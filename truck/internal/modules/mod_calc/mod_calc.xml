@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	 <name>Calculator</name>
+    <creationDate>15/September/2006</creationDate>
+    <author>webmaster-tips.net</author>
+    <copyright>www.webmaster-tips.net</copyright>
+    <authorEmail>nenadt@gmail.com</authorEmail>
+    <authorUrl>http://www.webmaster-tips.net</authorUrl>
+   <version>1.5.0</version>
+	<description>Flash Calculator powered by Webmaster-tips.net</description>
+    <files>
+         <filename module="mod_calc">mod_calc.php</filename>
+		 <filename>mod_calc/calc.swf</filename>
+		 </files>
+    <params name="" description="">
+       <param name="width" type="text" default="150" label="width" description="The width of Calculatort (Default 150)" />
+	  <param name="height" type="text" default="174" label="height" description="The height of Calculator (Default 174)" />
+	</params>
+</mosinstall>

@@ -1,0 +1,78 @@
+div.toolbar
+	{
+  border: thin groove;
+	color: #000000;
+  background-color: #E5E4E8;
+  height:20px;
+	}
+	
+div.wyter
+	{
+  float: left;
+  border: thin groove;
+	color: #000000;
+  background-color: #E5E4E8;
+  overflow: hidden;
+  height:16px;
+  font-size:7pt;
+  font-family: Verdana, arial, sans-serif;
+	}
+	
+div.close
+	{
+  width:17px;
+  height:17px;
+  float: right;
+  cursor:hand;
+  text-align: center;
+  font-weight: 700;
+  border:1px solid #7B9BBA;
+	}
+	
+div.footer
+	{
+  border:1px solid #000000;
+  font-size:7pt;
+  font-family: Verdana, arial, sans-serif;
+  width: 20px;
+  position: relative;
+  top:-1px;
+  white-space: nowrap;
+  padding:1px;
+  background-color:#7B9BBA;
+  color:#FFFFFF;
+	}
+	
+img.imageButton
+	{
+  width:20px;
+  height:20px;
+  cursor: auto;
+  border: 1px solid #E5E4E8;
+	}
+td.columnHeader
+	{
+  font-family: Tahoma, sans-serif;
+  font-size: 10pt;
+  font-weight: 700;
+  color: #717A89;
+	background-color:transparent;
+	}
+
+select.dropdown
+	{
+  font-size: 12px;
+  background-Color: #7B9BBA;
+  color: #FFFFFF;
+	}
+	
+div.popup
+	{
+	color: #ffffff;
+  background-color:#7B9BBA; 
+  border:1px solid black; 
+  height:20px;
+  visibility: hidden;
+  position:absolute;
+  top:0px;
+	}

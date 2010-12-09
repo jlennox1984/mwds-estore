@@ -1,0 +1,246 @@
+<!--*********************************************************************************
+** The contents of this file are subject to the vtiger CRM Public License Version 1.0
+ * ("License"); You may not use this file except in compliance with the License
+ * The Original Code is:  vtiger CRM Open Source
+ * The Initial Developer of the Original Code is vtiger.
+ * Portions created by vtiger are Copyright (C) vtiger.
+ * All Rights Reserved.
+*
+ ********************************************************************************/
+-->
+<!-- BEGIN: main -->
+<link rel="stylesheet" type="text/css" href="{THEME_PATH}style.css"/>
+
+<script language="javascript">
+function massDelete()
+{
+
+	x = document.massdelete.selected_id.length;
+	idstring = "";
+
+	if ( x == undefined)
+	{
+	
+		if (document.massdelete.selected_id.checked)
+		{
+			document.massdelete.idlist.value=document.massdelete.selected_id.value;
+			//alert(document.massdelete.idlist.value);
+		}
+		else 
+		{
+			alert("Please select atleast one entity");
+			return false;
+		}
+	}
+	else
+	{
+		xx = 0;
+		for(i = 0; i < x ; i++)
+		{
+			if(document.massdelete.selected_id[i].checked)
+			{
+				idstring = document.massdelete.selected_id[i].value +";"+idstring
+			xx++	
+			}
+		}
+		if (xx != 0)
+		{
+			document.massdelete.idlist.value=idstring;
+			//alert(document.massdelete.idlist.value);
+		}
+		else
+		{
+			alert("Please select atleast one entity");
+			return false;
+		}
+	}
+document.massdelete.action="index.php?module=Users&action=massdelete&return_module=Products&return_action=index"
+}
+</script>
+
+<script type="text/javascript" language="JavaScript">
+function clear_form(form) {
+	for (j = 0; j < form.elements.length; j++) {
+		if (form.elements[j].type == 'text' || form.elements[j].type == 'select-one') {
+			form.elements[j].value = '';
+		}
+	}
+}
+</script>
+<BR>
+<BR>
+{PRICEBOOKLISTHEADER}
+<table border="0" cellpadding="0" cellspacing="0" class="FormBorder" width="100%">
+  <tr height="20"> 
+    <td COLSPAN="18" class="listFormHeaderLinks">
+	 <table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>&nbsp;{RECORD_COUNTS}</td>
+			   {NAVIGATION}
+		</tr>
+	 </table>
+    </td>
+   </tr>
+   <tr><td colspan="18" height="1" class="blackLine"><IMG SRC="{IMAGE_PATH}blank.gif"></td></tr>
+   {LISTHEADER}
+ 	<tr><td colspan="18" height="1" class="blackLine"><IMG SRC="{IMAGE_PATH}blank.gif"></td></tr>
+   {ROWTOTAL} --- {ALLPRODUCTS}
+ 	<tr><td colspan="18" height="1" class="blackLine"><IMG SRC="{IMAGE_PATH}blank.gif"></td></tr>
+   {LISTENTITY}
+   </form>
+</table>
+<br>
+<script type='text/javascript' language='JavaScript'>
+function set_return_specific(rowtotal, pbprice) {
+
+
+//for (var i=1,k=0;i<=rowtotal;i++,k++) {
+//           productId[i]="hdnProductId"+i-1
+//		   }
+   
+   
+var str=pbprice;
+var cut=new Array();
+
+cut=str.split('\n');
+
+for(i=0;i<rowtotal;i++)
+{
+var productId="txtListPrice"+i-1;
+var cut2=cut[i].split(',');
+window.opener.document.EditView.elements[productId].value = cut2;
+        
+}
+
+   
+ //       window.opener.document.EditView.vendor_name.value = vendor_name;
+  //      window.opener.document.EditView.vendor_id.value = vendor_id;
+}
+function set_return_inventory_pb(listprice, fldname) {
+        window.opener.document.EditView.elements[fldname].value = listprice;
+	window.opener.document.EditView.elements[fldname].focus();
+}
+
+function roundValue(val) {
+	if (val.indexOf(".")<0) {
+		val+=".00"
+	} else {
+		var dec=val.substring(val.indexOf(".")+1,val.length)
+		if (dec.length>2)
+			val=val.substring(0,val.indexOf("."))+"."+dec.substring(0,2)
+		else if (dec.length==1)
+			val=val+"0"
+	}
+	
+	return val;
+}
+
+
+
+function set_return_inventory_pb1(rowtotal, allproducts) {
+//        window.opener.document.EditView.elements[fldname].value = listprice;
+//	window.opener.document.EditView.elements[fldname].focus();
+var subTotal=0,taxTotal=0,discountTotal=0;
+var grandTotal=0,freightcost=0,freighttax=0;
+
+var csvFile=new Array();
+var cut=new Array();
+
+for (var i=1,k=0;i<=rowtotal;i++,k++) {
+    
+var productId="txtListPrice"+i;
+var delRow="delRow"+i;
+var cut=allproducts.split("|");
+//var cut2=cut.split(',');
+//csvFile[i]=cut;
+//finalcut=csvFile[i];
+//alert(cut[0]+" --- "+cut[1]+" --a- "+cut[2]);
+var cut2=cut[k];
+
+	var txtQty="txtQty"+i;
+	var txtDiscount="txtDiscount"+i;
+	var hdnItemTax="hdnItemTax"+i;
+	var totalfield="total"+i;
+	var hdnTotal="hdnTotal"+i;
+	var hdnItemTaxTotal="hdnItemTaxTotal"+i;
+	var hdnDiscount="hdnDiscount"+i;
+
+	var Qty=window.opener.document.EditView.elements[txtQty].value;
+	var Discount=window.opener.document.EditView.elements[txtDiscount].value;
+	var ItemTax=window.opener.document.EditView.elements[hdnItemTax].value;
+	var hdnTotalval=window.opener.document.EditView.elements[hdnTotal].value;
+	var ItemTaxTotal=window.opener.document.EditView.elements[hdnItemTaxTotal].value;
+	var hdnDiscountval=window.opener.document.EditView.elements[hdnDiscount].value;
+	
+	var discounttotal=eval(Qty*cut2*Discount/100)
+	var total=eval(Qty*cut2-discounttotal)
+	var taxtotal=eval(total*ItemTax)
+	
+	var listVal = window.opener.document.getElementById(totalfield);
+   listVal.innerHTML = '';
+   var result = '';
+   
+      result += roundValue(total.toString());
+
+   listVal.innerHTML = result; 
+// 	window.opener.document.EditView.getElementById('totalfield').innerHTML=	
+	
+	
+	window.opener.document.EditView.elements[hdnTotal].value=roundValue(total.toString())
+	window.opener.document.EditView.elements[hdnItemTaxTotal].value=roundValue(taxtotal.toString())
+	window.opener.document.EditView.elements[hdnDiscount].value=roundValue(discounttotal.toString())	
+
+
+window.opener.document.EditView.elements[productId].value = cut2;
+	window.opener.document.EditView.elements[productId].focus();
+	window.opener.document.EditView.elements[productId].blur();
+//window.opener.document.EditView.delRow.focus();
+
+
+	subTotal+=result;
+	taxTotal+=ItemTaxTotal;
+	discountTotal+=parseFloat(hdnDiscountval);
+
+}
+var subTotalVal = window.opener.document.getElementById("subTotal");
+   subTotalVal.innerHTML = '';
+   var subTotalValresult = '';
+   subTotalValresult += roundValue(subTotal.toString());
+   subTotalVal.innerHTML = subTotalValresult; 
+
+   var grandTotalVal = window.opener.document.getElementById("grandTotal");
+   grandTotalVal.innerHTML = '';
+   var grandTotalValresult = '';
+   grandTotalValresult += roundValue(grandTotal.toString());
+   grandTotalVal.innerHTML = grandTotalValresult; 
+
+   var txtDiscountTotalVal = window.opener.document.getElementById("txtDiscountTotal");
+   txtDiscountTotalVal.innerHTML = '';
+   var txtDiscountTotalValresult = '';
+   txtDiscountTotalValresult += roundValue(discountTotal.toString());
+   txtDiscountTotalVal.innerHTML = txtDiscountTotalValresult; 
+
+
+	freightcost=parseFloat(window.opener.document.EditView.elements["freightcost"].value)
+	freighttax=parseFloat(window.opener.document.EditView.elements["freighttax"].value)
+	grandTotal=subTotal+taxTotal+freightcost+freighttax
+//	getObj("txtTax").value=roundValue(taxTotal.toString())
+	window.opener.document.EditView.elements["hdnSubTotal"].value=roundValue(subTotal.toString())
+	window.opener.document.EditView.elements["hdnGrandTotal"].value=roundValue(grandTotal.toString())
+	window.opener.document.EditView.elements["hdnDiscountTotal"].value=roundValue(discountTotal.toString())
+}
+
+function calcGrandTotal() {
+	
+	
+//	grandTotal=subTotal+parseFloat(getObj("txtTax").value)+parseFloat(getObj("freightcost").value)
+	
+	
+}
+
+
+</script>
+<!-- END: main -->
+</form>
+</table>
+

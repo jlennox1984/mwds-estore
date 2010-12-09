@@ -1,0 +1,48 @@
+<html>
+<head>
+<style>
+body{
+    margin: 0px;
+}
+</style>
+<script language="javascript" src="colorchooser.js"></script>
+<script>
+var loc;
+function load(l){
+  loc = l;
+}
+function init(){
+   cc = new ColorChooser();
+   cc.draw(colorchooser);
+}
+function setCustom(){
+  var color = document.all.custom.value;
+  if (color.substring(0,1) != '#') color = '#' + color;
+  if (/^\#[0-9a-fA-F]{6}$/.test(color)){
+    document.all.custom.value.value = '';
+    parent.document.all.ewe.focus();
+    parent.setForeColor(color, loc);
+    parent.popupToggle(parent.document.all.forecolorPopup);
+  }
+}
+</script>
+<link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+</head>
+<body onload="init()" onkeypress="if(event.keyCode == 27)window.close();">
+<table id="clr" border=0 cellpadding="1" cellspacing="1" unselectable="on" width=100%>
+<tr unselectable="on">
+  <td class="columnHeader" style="font-weight: 600;">Select a Color <hr size="1" noshad></td>
+</tr>
+<tr>
+  <td><div id="colorchooser" onclick="color=cc.color;"></td>
+</tr>
+<tr unselectable="on">
+  <td class="columnHeader" style="font-weight: 600;"><br>Custom Color <hr size="1" noshad></td>
+</tr>
+<tr>
+  <td> Hex: <input id="custom" type="text=" size="7" maxlength="7" style="height:18px; font-size:8pt; font-family: arial"> <input type="button" value="Select" style="height:20px;" onClick="setCustom()"; </tr>
+</tr>
+</table>
+</div>
+</body>
+<html>

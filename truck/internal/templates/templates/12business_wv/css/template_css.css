@@ -1,0 +1,687 @@
+/*- Page Structure */
+
+body {
+	font: 13px Verdana, Arial, Sans-Serif; 
+	color: #333;
+	background-color: #C1BC9B;
+	margin: 0px;
+	}
+
+
+TABLE.toptable {
+	width: 100%;
+	height: 20px;
+	background-image: url(../images/headline.jpg);
+	background-repeat:repeat-x;
+}
+
+
+TABLE.maintable {
+	height: 100%;
+	width: 770px;
+	border-right: 1px solid #960;
+	border-left: 1px solid #960;
+	padding: 2px;
+	background-color:#FFF;
+}
+
+TD.datebox {
+	padding-right: 20px;
+	text-align:right;
+}
+
+TD.headerimage {
+	background-image: url(../images/header.jpg);
+	background-position:right;
+	background-repeat:no-repeat;
+	width: 770px;
+	height: 176px;
+}
+
+TD.titel {
+	width: auto;
+	height: auto;
+	vertical-align: top;
+	padding-left: 30px;
+	background-image: url(../images/transp.jpg);
+	filter:alpha(opacity=75); 
+	-moz-opacity: 0.75;
+	font-size: 16px;
+	text-shadow:#999900 3px;
+	font-weight: bold;
+}
+
+TD.pathway{
+	height: 20px;
+	background-image: url(../images/pathway.jpg);
+	background-repeat:repeat-x;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+A.pathway {
+	color: #FFFFFF;
+	text-decoration:underline;
+	vertical-align:middle;
+}
+
+
+TD.leftcol {
+	border: 1px solid #960;
+	width: 180px;
+	
+}
+
+
+TD.footer {
+	background-color: #EBEBEB;
+	vertical-align:middle;
+	font-size: 10px;
+}
+
+/*
+#page {
+	background: white;
+	text-align: left;
+	position: relative;*/
+	/* The entire template's width is set in this class. */
+	/*width:  85%;
+	border: 1px solid #ddd;
+	border-top: none;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	padding-top: 18px;
+	padding-right: 0;
+	padding-bottom: 10px;
+	padding-left: 0;
+	}*/
+
+.textsize {
+	position:absolute;
+	right: 1px;
+	top: 1px;
+}	
+
+/*#header {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	height: 200px;
+	background-color: #3371A3;
+	background-image: url(../images/thejfactory.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+	}*/
+
+.mainarea {
+	margin-top: 0px;
+	margin-right: 210px;
+	}
+	
+.wide_mainarea {
+	float: left;
+	margin-right: -20px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	}	
+
+.rightcolumn {
+	font: 1em/1.5em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	float: right;
+	width:200px;
+	color: #666;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	}
+
+#holder_top{
+	position: relative;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+#holder_bottom {
+	position: relative;
+	margin-top: 20px;
+	margin-right: 30px;
+	margin-left: 30px;	
+}
+
+.path {
+	font: 1.2em Verdana, Helvetica, Arial, Sans-Serif;
+	float: left;
+	padding-top: 3px;
+	margin-right: 150px;
+}
+
+.search {
+	width: 150px;
+	float: right;
+}
+
+.users {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.user12 {
+	margin-top: 10px;
+	width: 97%;
+}
+
+.wide_user12 {
+	width: 100%;
+}
+
+.user1 {
+	background-color: #5085B0;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.user2 {
+	background-color: #6392B8;
+	padding: 5px;
+	vertical-align: top;		
+	width: 49.1%;
+}
+
+.breaker {
+	background-color: #FFFFFF;
+	width: .5%;
+}
+
+#josmainbody {
+	padding-right: 35px;
+}
+
+
+
+/*- Main Menu in Header */
+
+ul.menu {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 0;
+	left: 20px;
+	width: 90%;
+	}
+
+ul.menu li {
+	display: block;
+	margin: 0;
+	}
+
+ul.menu,
+ul.menu li a {
+	/*padding: 5px 15px 6px;*/
+	}
+
+ul.menu li a {
+	font: 12px Verdana, Helvetica, Arial, Sans-Serif;
+	color: white;
+	margin: 0;
+	}
+
+/*ul.menu li a:hover {
+	background-image: url(../images/bg_mainmenu_hover.jpg);
+	background-repeat:repeat-x;
+	color: #FF0000 !important;
+	text-decoration: none;
+	}
+*/
+ul.menu li.current_page_item a,
+ul.menu li.current_page_item a:hover {
+	color: #333 !important;
+	background: white;
+	text-decoration: none;
+	}
+
+ul.menu li.current_page_item a:hover {
+	color: #C30 !important;
+	/*background: white;*/
+	text-decoration: none;
+	}
+}
+
+	
+#current {
+	color: #333 !important;
+	background: white;
+	text-decoration: none;
+	}	
+
+/*- Headings */
+
+h1, h2, h3, h4 {
+	font-family: 'Trebuchet MS', Verdana, Sans-Serif;
+	}
+
+h1 { /* H1 is used for the title of your blog */
+	font-size: 3em;
+	font-weight: bold;
+	letter-spacing: -1px;
+	padding-top: 75px;
+	margin: 0 0 0 40px;
+	width: 100%;
+	}
+
+h1, h1 a, h1 a:hover, h1 a:visited,
+#header .description {
+	text-decoration: none;
+	color: white;
+	}
+
+h1:hover {
+	text-decoration: none;
+	}
+
+.rightcolumn h3, .wide_mainarea h3, .wide_mainarea h4 { /* Secondary H2 is sidebar headlines */
+	font-size: 1.8em;
+	font-weight: normal;
+	padding: 0;
+	display: block;
+	padding-bottom: 3px;
+	}
+
+.mainarea h3, .mainarea h4 { /* H3 is entry headlines. H4 is comments and replyform headlines */
+	font-size: 14px;
+	font-weight: normal;
+	letter-spacing: -1px;
+	display: inline;
+	}
+
+.rightcolumn > div {
+	padding: 0;
+	margin-top: 0px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	}
+
+.rightcolumn span a, .rightcolumn span a:visited {
+	color: #999;
+	font-weight: normal;
+	}
+
+.rightcolumn span a {
+	margin-left: 10px;
+	}
+
+h2, h2 a, h2 a:visited,
+h3, h3 a, h3 a:visited,
+h4, h4 a, h4 a:visited {
+	color: #444;
+	}
+
+h2, h2 a, h2 a:hover, h2 a:visited,
+h3, h3 a, h3 a:hover, h3 a:visited,
+h4, h4 a, h4 a:hover, h4 a:visited {
+	text-decoration: none;
+	}
+
+/*- mainarea Contents */
+
+#footer {
+	text-align: center;
+	}
+
+#footer a {
+	color: #999;
+	padding: 5px;
+	border-bottom: 0px solid #ccc;
+	font-weight: normal;
+	font-size: 10px;
+	}
+
+#footer a:hover {
+	border: none;
+	text-decoration: none;
+	color: black;
+	}
+
+
+/*- Links */
+
+.mainarea a:hover, .mainarea a:visited:hover,
+.wide_mainarea a:hover, .wide_mainarea a:visited:hover,
+.rightcolumn a:hover, .rightcolumn a:visited:hover {
+	text-decoration: underline;
+	color: #C30;
+	}
+
+h2 a:hover, h2 span a:hover {
+	color: #D9D9D9 !important;
+	font-size: 12px;
+	color: #C30;
+	}
+
+a {
+	color: #666;
+	font-size: 12px;
+	text-decoration: none;
+	}
+
+/*- Various Tags and Classes */
+
+.clear {
+	clear: both;
+	margin: 0;
+	padding: 0;
+	}
+
+.mainarea img {
+	margin-left: -5px;
+	padding: 4px;
+	}
+
+
+img.noborder {
+	border: none !important;
+	}
+
+small {
+	font-size: 11px;
+	line-height: 1.5em;
+	}
+
+small, strike {
+	color: #777;
+	}
+
+hr {
+	display: none;
+	}
+
+
+/*- Begin Lists */
+.rightcolumn ul, .rightcolumn ol, .rightcolumn > div > div {
+	margin: 5px 0 0;
+	padding-left: 0;
+	}
+
+.rightcolumn ul {
+	_margin-left: 0px; /* IE Fix */
+	margin-left: 0px;
+	}
+
+.rightcolumn ol {
+	margin-left: 15px;
+	}
+
+.rightcolumn ul li, .rightcolumn ol li {
+	margin: 0;
+	padding: 1px 0;
+	}
+	
+.rightcolumn ul li {
+	list-style-type: none;
+	list-style-image: none;
+	}
+
+ol li {
+	list-style: decimal inside;
+	}
+
+
+/*- Search Form and Livesearch */
+
+input[type=text], textarea {
+	color: #444;
+	padding: 0px;
+	margin: 0;	
+	}
+
+
+tr {} /*formatting all
+<tr> items.  This default setting is used when no other style has been defined.*/
+ul {} /*formatting all UL (unordered list) items. This default setting is used when no other style has been defined.*/
+a:link {
+	text-decoration: none;	
+} /* general links style*/
+a:visited {}
+a:hover {
+	text-decoration:none;
+	color: #999;
+	}
+a img {
+	border: none;
+	}
+hr {} /* horizontal line in your template*/
+hr.separator {}
+ 
+/* FORMS SETTINGS */
+.inputbox {
+	margin: 0px;
+	right: 0px;
+	height: 14px;
+	border: 1px solid #333;
+	font-size: 10px;
+} /*formatting the <div> which holds search items: inputbox, search button...*/
+ 
+form {
+	margin: 0px;
+	} 
+ 
+/* NAVIGATION/MENU SETTINGS */
+ 
+a.mainlevel{
+	font-size: 13px;
+	color: #333;
+	text-indent: 12px;
+	text-transform:uppercase;
+	text-decoration:none;
+	line-height:20px;
+	display: block;
+	background-color:#F2F2F2;
+	width:178px;
+	border-bottom: 1px dotted #960;
+} /* this styling is for the MAIN items in the menu */
+a.mainlevel:link {
+	
+}
+a.mainlevel:visited {}
+a.mainlevel:hover {
+	/*background-image: url(../images/bg_mainmenu_hover.jpg);
+	background-repeat:repeat-x;*/
+	background-color:#FFF;
+	border-bottom: 1px dotted #000;
+	color: #333;
+}
+ 
+#active_menu {
+} /* this styling is for the menu item when it is active, even in main/sub position*/
+ 
+.pagenavbar {} /*Sets the style for the footer navigation ("<< Start < Prev Next > End >>") when they do not appear as hyperlinks (when only a few articles exist).*/
+.pagenavbar:link {} /*Style for the footer navigation ("<< Start < Prev Next > End >>") when they become hyper links*/
+.pagenavbar:visited {}
+ 
+.pagenav {} /* as the name implies, this is for formatting texts for those "<< Start < Previous 1 Next > End >>" links */
+a.pagenav:visited {}
+a.pagenav:hover {}
+ 
+a.readon:link {} /*Style for the "Read More" link that is displayed for large content items*/
+a.readon:hover {}
+a.readon:visited {}
+ 
+.back_button {} /*Style for the "BACK" button*/
+.pagenav_prev {} /*Style for the PRE button*/
+.pagenav_next {} /*Style for the NEXT button*/
+ 
+.latestnews ul {} /*Style for latest news list - by default, latest news is user1 module*/
+.latestnews li {}
+ 
+.mostread ul{} /*Style for most popular list - by default, most popular is user2 module*/
+.mostread li{}
+ 
+/* CONTENT PAGE SETTINGS */
+a.category:link {}
+a.category:hover {}
+a.category:visited {}
+ 
+.blogsection {} /* Formatting the links in Blog section */
+.blog_more {} /*The "More" text in blog section*/
+a.blogsection:link {} /* set the link format */
+a.blogsection:visited {} /* same as above, but to set the visited link format */
+a.blogsection:hover {} /* same as above, but for links with mouse pointer over it */
+
+/* Title of the component being used to display the content.*/ 
+.componentheading {
+	font-size: 14px;
+	display: block;
+	font-weight: bold;
+	padding: 15px 0 0;
+}
+/* Title of the content, article, etc. being displayed.*/
+.contentheading {
+	font-size: 16px;
+	font-weight: bold;
+	display: block;
+	padding: 15px 0 0;
+}
+.contentpane {font-size: 12px; nowrap;} /* Table that holds all non-article information (components, category lists, contact forms, etc).*/
+.contentpaneopen {font-weight: normal; font-size: 12px;} /* Table that holds the actual text for an article.*/
+.contentpagetitle {
+	font-size: 15px;
+	font-weight: bold;
+	display: block;
+	padding: 15px 0 0;
+} /*Title of articles*/
+ 
+a.contentpagetitle:hover {} /*Title of articles when appeare as links */
+a.contentpagetitle:link {}
+a.contentpagetitle:visited {}
+ 
+.contentdescription {} /* Formating the "DESCRIPTION" of sections, categories (News/Weblinks/Latest news...) */
+table.contenttoc {} /* Formating the table of the Tables of Contents for multiple pages content or article */
+table.contenttoc td {} /* same as above, used to format the td and able cells */
+table.contenttoc th {} /* same as above, used to format the th of "Tables of Content" ( normally Article Index)*/
+table.contenttoc td.toclink {} /* same as above, used to format toc link texts*/
+a.toclink:link {} /* same as above, used to format toc link text status*/
+a.toclink:visited {}
+a.toclink:hover {}
+ 
+ 
+/* MAMBO SECTIONS LISTINGS */
+.sectiontableheader {} /* This is for styling the section table headers on a SECTION's page.
+  Example: table header of "Date", "Item Title", "Author" and "Hits"? */
+.sectiontableentry1 {
+	background-color:#EBEBEB;
+}
+.sectiontableentry2 {}
+ 
+ 
+/* MAMBO MODULES FORMATTING */
+.moduletable {}
+table.moduletable {
+	} /* Formatting the module table */
+table.moduletable th {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	text-indent: 0px;
+	text-decoration: underline;
+} /* Formatting the module header, and the module titles */
+table.moduletable td {
+	font-size: 12px;
+	font-weight: normal;
+} /* Formatting the table cells of the module table */
+
+ 
+.moduletable1 {}
+table.moduletable1 {
+	padding: 0px;} /* Formatting the module table */
+table.moduletable1 th {} /* Formatting the module header, and the module titles */
+table.moduletable1 td {
+	height: 30px;
+	/*background-image: url(../images/bg_mainmenu_hover.jpg);
+	background-repeat: repeat-x;*/
+} /* Formatting the table cells of the module table */
+table.moduletable1:hover td {
+	/*height: 30px;
+	background-image: url(../images/bg_mainmenu_hover.jpg);
+	background-repeat: repeat-x;*/
+} /* Formatting the table cells of the module table */
+ 
+
+.moduletable-red {}
+table.moduletable-red {
+	} /* Formatting the module table */
+table.moduletable-red th {} /* Formatting the module header, and the module titles */
+table.moduletable-red td {
+	color: #FFFFFF;
+	font-size: 12px;
+	
+} /* Formatting the table cells of the module table */ 
+ 
+ 
+/* MISCELLANEOUS */
+ 
+/* Dates , Authors*/
+.createdate {} /* For styling the date the content/articles are created under contents title */
+.modifydate {} /* Formating "Last updated on" text at the end of articles/contents */
+.small {
+	font-size: 11px;
+	color: #999;
+} /* Formating "Written by:...." text */
+.smalldark {}/*Found in poll result page, for " Number of Voters".. text */
+ 
+/* Polls */
+.poll {} /* format the td of poll table */
+.pollstableborder {} /* set the border properties of the polls voting table */
+
+
+
+/* -- NEW!!! -- */
+
+
+ul#mainlevel-nav
+{
+	list-style: none;
+	padding: 0;
+	padding-right: 10px;
+	margin: 0;
+	font-size: 11px;
+}
+
+ul#mainlevel-nav li
+{
+	background-image: none;
+	padding-left: 10px;
+	padding-right: 0px;
+	float: left;
+	margin: 0;
+	font-size: 11px;
+	line-height: 30px;
+	white-space: nowrap;
+	border-right: 1px solid #cccccc;
+}
+
+ul#mainlevel-nav li a
+{
+	/*display: block;*/
+	height: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
+	text-decoration: none;
+	color: #333333;
+	background: transparent;
+}
+
+#buttons>ul#mainlevel-nav li a { width: auto; padding-right: 10px; }
+
+	ul#mainlevel-nav li a:hover
+{
+	color: #fff;
+	background: #c64934;
+}

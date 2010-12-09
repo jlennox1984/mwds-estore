@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- generator="FeedCreator 1.7.2" -->
+<rss version="2.0">
+	<channel>
+		<title>Joomla! powered Site</title>
+		<description>Joomla! site syndication</description>
+		<link>http://virtuemart.mediavessel.com</link>
+		<lastBuildDate>Tue, 20 Mar 2007 16:24:00 +0100</lastBuildDate>
+		<generator>FeedCreator 1.7.2</generator>
+		<image>
+			<url>http://virtuemart.mediavessel.com/images/M_images/joomla_rss.png</url>
+			<title>Powered by Joomla!</title>
+			<link>http://virtuemart.mediavessel.com</link>
+			<description>Joomla! site syndication</description>
+		</image>
+		<item>
+			<title>Welcome to Joomla!</title>
+			<link>http://virtuemart.mediavessel.com/index.php?option=com_content&amp;task=view&amp;id=1&amp;Itemid=2</link>
+			<description>If you've read anything at all about Content Management Systems (CMS), you'll probably know at least three things: CMS are the most exciting way to do business, CMS can be really, I mean really, complicated and lastly Portals are absolutely, outrageously, often unaffordably expensive. Joomla! is set to change all that ... Joomla! is different from the normal models for portal software. For a start, it's not complicated. Joomla! has been developed for the masses. It's licensed under the GNU/GPL license, easy to install and administer and reliable. Joomla! doesn't even require the user or administrator of the system to know HTML to operate it once it's up and running.</description>
+			<category>News - Latest</category>
+			<pubDate>Sat, 12 Jun 2004 11:54:06 +0100</pubDate>
+		</item>
+		<item>
+			<title>Newsflash 1</title>
+			<link>http://virtuemart.mediavessel.com/index.php?option=com_content&amp;task=view&amp;id=2&amp;Itemid=9</link>
+			<description>Joomla! 1.0 - 'Experience the Freedom'!. It has never been easier to create
+your own dynamic site. Manage all your content from the best CMS admin
+interface.</description>
+			<category>Newsflashes - Newsflash</category>
+			<pubDate>Mon, 09 Aug 2004 08:30:34 +0100</pubDate>
+		</item>
+		<item>
+			<title>Newsflash 2</title>
+			<link>http://virtuemart.mediavessel.com/index.php?option=com_content&amp;task=view&amp;id=3&amp;Itemid=9</link>
+			<description>Yesterday all servers in the U.S. went out on strike in a bid to get more RAM and better CPUs. A spokes person said that the need for better RAM was due to some fool increasing the front-side bus speed. In future, busses will be told to slow down in residential motherboards.</description>
+			<category>Newsflashes - Newsflash</category>
+			<pubDate>Mon, 09 Aug 2004 08:30:34 +0100</pubDate>
+		</item>
+		<item>
+			<title>Newsflash 3</title>
+			<link>http://virtuemart.mediavessel.com/index.php?option=com_content&amp;task=view&amp;id=4&amp;Itemid=9</link>
+			<description>Aoccdrnig to a rscheearch at an Elingsh uinervtisy, it deosn't mttaer in waht oredr the ltteers in a wrod are, the olny iprmoetnt tihng is taht frist and lsat ltteer is at the rghit pclae. The rset can be a toatl mses and you can sitll raed it wouthit porbelm. Tihs is bcuseae we do not raed ervey lteter by itslef but the wrod as a wlohe.</description>
+			<category>Newsflashes - Newsflash</category>
+			<pubDate>Mon, 09 Aug 2004 08:30:34 +0100</pubDate>
+		</item>
+	</channel>
+</rss>

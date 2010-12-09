@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mosinstall type="template">
+	<name>Klapaucius</name>
+	<creationDate>10/05/2005</creationDate>
+	<author>Mambo Template Factory</author>
+	<copyright>None</copyright>
+	<authorEmail>post@mambotf.com</authorEmail>
+	<authorUrl>www.mambotf.com</authorUrl>
+	<version>1.0</version>
+	<description>Green and yellow template</description>
+	<files>
+		<filename>favicon.ico</filename>
+		<filename>index.php</filename>
+		<filename>mysplitcssmenu.php</filename>
+		<filename>template_thumbnail.png</filename>
+	</files>
+	<images>
+		<filename>images/body_topbg.png</filename>
+		<filename>images/menubullet.gif</filename>
+		<filename>images/menucontainer_left.gif</filename>
+		<filename>images/menucontainer_right.gif</filename>
+		<filename>images/modulesbg.png</filename>
+		<filename>images/tab_l.gif</filename>
+		<filename>images/tab_r.gif</filename>
+		<filename>images/top_belowmenu.gif</filename>
+	</images>
+	<css>
+		<filename>css/template_css.css</filename>
+		<filename>css/template.css</filename>
+		<filename>css/mambo.css</filename>
+	</css>
+</mosinstall>

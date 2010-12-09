@@ -1,0 +1,81 @@
+.contentpagetitle,a.contentpagetitle,.componentheading,.contentheading{
+	color				: #000000;
+	font-size			: 25px;
+	text-decoration		: none;
+	letter-spacing		: 1px;
+	font-weight			: bold;
+}
+a.contentpagetitle:hover{
+	text-decoration		: underline;
+}
+
+.createdate,.modifydate,.small{
+	color				: #697e9a;
+	font-size			: 9px;
+	font-weight			: bold;
+}
+
+div.mosimage{
+	border				: 1px solid #C1E999;
+	margin				: 4px;
+}
+
+div.mosimage_caption{
+	background			: #697e9a;
+	color				: #FFFFFF;
+	font-weight			: bold;
+}
+
+div.mosimage img{
+	margin				: 3px;
+}
+/*------------------------
+Modules
+------------------------*/
+
+table.moduletable{
+	margin-bottom		: 10px;
+}
+table.moduletable th{
+	background-color	: #697e9a;
+	line-height			: 25px;
+	vertical-align		: middle;
+	width				: 170px;
+	color				: #aeb9c9;
+	font-size			: 20px;
+	letter-spacing		: 1px;
+	font-weight			: bold;
+}
+
+table.moduletable td{
+	padding-top			: 10px;
+}
+
+table.moduletable td td{
+	padding-top			: 0px;
+	padding-left		: 6px;
+font-size: 13px;
+}
+
+div.moduletable{
+	background			: #d2d8e1;
+	border-top			: 1px solid #ACD683;
+	border-bottom		: 1px solid #ACD683;
+	padding-left		: 10px;
+	margin-bottom		: 5px;
+
+}
+
+div.moduletable h3{
+	margin				: 0px;
+	padding				: 0px;
+	font-size			: 13px;
+}
+
+div.moduletable ul{
+	margin-top			: 5px;
+}
+
+div.moduletable li{
+	list-style-image	: url(../images/menubullet.gif);
+}

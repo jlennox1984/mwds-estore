@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Edit Image Properties</title>
+<script language="JScript">
+var pimg;
+function loadIMG(img){
+  pimg = img;
+  var frm = document.frmProp;
+  frm.width.value = (pimg.style.width)?parseInt(pimg.style.width):pimg.width;
+  frm.height.value = (pimg.style.height)?parseInt(pimg.style.height):pimg.height;
+  frm.alt.value = img.alt;
+  frm.border.value = img.border;
+  frm.valalign.selectedIndex = findValue(img.align, frm.valalign)
+  frm.vspace.value = img.vspace;
+  frm.hspace.value = img.hspace;
+}
+function findValue(value, select){
+  for (var i = 0; i < select.options.length;++i){
+    if (select.options[i].value == value)
+      return i;
+  }
+  return 0;
+}
+function editImage(){
+  var frm = document.frmProp;
+  pimg.alt = frm.alt.value;
+  pimg.removeAttribute("height",0);
+  pimg.removeAttribute("width",0);
+  pimg.border = frm.border.value;
+  pimg.style.height = frm.height.value;
+  pimg.style.width = frm.width.value;
+  pimg.vspace = frm.vspace.value;
+  pimg.hspace = frm.hspace.value;
+  pimg.align = frm.valalign.value;
+
+  parent.popupToggle(parent.document.all.editImage);
+  parent.document.all.ewe.focus();
+}
+</script>
+</head>
+<link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+<body style="background-color:#FFFFFF;overflow:hidden;" onClick="parent.popupClick(parent.document.all.table);" unselectable="on">
+  <form name="frmProp" onSubmit="return false;" unselectable="on">
+  <input type="hidden" name="filepath">
+  <table width="350" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="350" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="3">Image Properties<hr size="1" noshad></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="135" class="columnHeader" unselectable="on">Width: </td>
+      <td width="200" unselectable="on"><input type="text" size="2" maxlength="4" name="width">px</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="135" class="columnHeader" unselectable="on">Height: </td>
+      <td width="200" unselectable="on"><input type="text" size="2" maxlength="4" name="height">px</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="135" class="columnHeader" unselectable="on">Border Size: </td>
+      <td width="200" unselectable="on"><input type="text" size="2" maxlength="4" name="border" value="0"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="135" class="columnHeader" unselectable="on">Alternate Text: </td>
+      <td width="200" unselectable="on"><input type="text" size="20" maxlength="100" name="alt"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="135" class="columnHeader" unselectable="on">Align: </td>
+      <td width="200" unselectable="on"><select name="valalign"><option value="">Default</option><option value="bottom">Bottom</option><option value="middle">Middle</option><option value="top">Top</option><option value="left">Left</option><option value="right">Right</option></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="135" class="columnHeader" unselectable="on">Horizontal Space: </td>
+      <td width="200" unselectable="on"><input type="text" size="2" maxlength="4" name="hspace">px</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="135" class="columnHeader" unselectable="on">Vertical Space: </td>
+      <td width="200" unselectable="on"><input type="text" size="2" maxlength="4" name="vspace">px</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">&nbsp;</td>
+      <td width="160" unselectable="on"><input type="button" value="Edit Image" onClick="editImage();"></td>
+    </tr>
+  </table>
+  </form>
+</body>
+</html>

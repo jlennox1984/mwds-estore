@@ -1,0 +1,110 @@
+ABOUT
+-------------------------------
+Easy Web Editor (EWE)
+http://www.openmymind.net/
+Author: Karl Seguin
+An open source web-based WYSIWYG HTML editor for IE 5.5 (tested on 6).
+If you are using this editor, I'd like to put a link to your page up on mine.
+
+
+LICENSE
+------------------------------
+As of version 0.4, Easy Web Editor has been available under the LGPL. See the file "COPYING" distributed with this program. 
+For more information, please visit
+http://www.gnu.org/licenses/licenses.html#LGPL
+
+
+SUPPORT
+------------------------------
+Please try the forum before emailing me.
+http://www.openmymind.net/forum/
+I'll probably respond there quicker, and it might help others, or others might help you
+
+
+QUICK INSTALLATION
+------------------------------
+The following sample page will create the editor within the eweContainer.
+
+<html>
+<head>
+  <title>Example</title>
+  <script language="JScript">
+  <!--
+    function load(){
+     var ewe = new EWE();
+     ewe.load(document.all.eweContainer);
+    }
+    var editorPath = '';
+  //-->
+  </script>
+  <script language="JScript" src="source/ewe.js"></script>
+</head>
+<body style="background-color: #FFFFFF;" onLoad="load();">
+
+  <div id="eweContainer" unselectable="on"></div>
+
+</body>
+</html>
+
+INSTALLATION
+------------------------------
+As of version 0.5, EWE has become neatly packaged to allow for more flexible deployment.  Previous versions required no guide on how to install them.
+
+First off, in order for the popups to operate correctly, "xmlns:move" must be placed in the <html> tag - i haven't been able to find an alternative.
+
+EWE is now an object which must first be created, then loaded.  Between these two steps, certain properties can be set.
+
+The first function creates an EWE object.  It is appropriately called EWE(), and supports two optional arguments: the path to the stylesheet to use and the path to the language file to use.
+
+Example:
+// 1- creates an instance of EWE
+   var ewe = new EWE();  
+
+// 2- creates an instance of EWE with a language file
+   var ewe = new EWE('source/ewe_langEN.xml');
+
+// 3- creates an instance of EWE with a stylesheet
+   var ewe = new EWE(null, 'source/sample.css');
+
+// 4- creates an instance of EWE with a language file and a style sheet
+   var ewe = new EWE('source/ewe_langEN.xml','../../css/style.css');
+
+
+As you can see, when creating an instance of EWE the language file as well as the CSS to use can be loaded.  An alternative way of doing this exists.
+
+To specify a language file
+Example:
+   //creates an instance of EWE
+   var ewe = new EWE();
+   //specifies the language file
+   ewe.setLanguageFile('source/ewe_langEN.xml');
+
+To specify a style sheet
+Example:
+   //creates an instance of EWE
+   var ewe = new EWE();
+   //loads the stylesheet
+   ewe.setStyleSheet('../../css/style.css');
+
+It should be noted that trying to load a language file or style sheet twice will result in an error.  Similarly, trying to load a language file or style sheet after the editor has been loaded will result in an error.
+
+Finally, you can load the editor via it's load() method.  When loading the editor, you _must_ specify the container of the editor - that is the element (tag) which the editor will be loaded in.  The container must be able to have children (such as div or td).  You can also specify the HTML content you want to load.
+
+Example:
+// 1 - load with no content
+  //Creates an instance of the editor
+  var ewe = new EWE(); 
+  //loads the editor into the container which has an id of eweContainer
+  ewe.load(document.all.eweContainer);
+
+// 2 - load with content
+  //Creates an instance of the editor
+  var ewe = new EWE(); 
+  //loads the editor into the container which has an id of eweContainer
+  ewe.load(document.all.eweContainer, '<b>hello world!</b>);
+
+
+**PLEASE SEE THE FORUM FOR GREAT EXAMPLES OF HOW TO DO THIS***
+
+
+Thes The ideal time to call these functions is when the onLoad event of the window/body fire.

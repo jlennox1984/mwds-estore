@@ -1,0 +1,2 @@
+[21-Mar-2007 14:55:36] PHP Warning:  array_flip() [<a href='function.array-flip'>function.array-flip</a>]: The argument should be an array in /home/muskoxen/public_html/virtuemart/administrator/components/com_joomlaxplorer/.include/fun_bookmarks.php on line 114
+[21-Mar-2007 14:55:36] PHP Warning:  Invalid argument supplied for foreach() in /home/muskoxen/public_html/virtuemart/administrator/components/com_joomlaxplorer/.include/fun_bookmarks.php on line 116

@@ -1,0 +1,38 @@
+<HTML>
+<head>
+<title>Easy Web Editor (EWE)</title>
+<script language="JScript">
+   function onLoad(){
+    var ewe = new EWE(null, 'sample.css');
+    if (ewe.IsValidBrowser() == false){
+      alert('You require IE 5.5+ to run this editor');
+    }else{
+      ewe.addButton(new eweButton('ZoomOut', "alert('This is a custom button, easily added in EWE.');", 0));
+      ewe.load(document.all.eweContainer, '');
+    }
+  }
+  function sampleSave(){
+    if (ViewCurrent == 2)
+      toggleView();
+    document.forms['sampleSave'].HTMLContent.value = cleanup(document.all.ewe.innerHTML);
+    alert('This function shows the basics of saving, but is left up to the implementor to customize');
+    //document.forms['sampleSave'].submit();
+  }
+  var editorPath = "";
+</script>
+<script language="JScript" src="source/ewe.js"></script>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="onLoad();" onKeyDown="dispatcher();">
+<table width="100%">
+   <tr>
+      <td width="50%">&nbsp;</td>
+      <td><div id="eweContainer" unselectable="on"></div></td>
+      <td width="50%">&nbsp;</td>
+   </tr>
+</table>
+<form method="post" id="sampleSave">
+  <input type="hidden" name="HTMLContent">
+</form>
+</body>
+</html>

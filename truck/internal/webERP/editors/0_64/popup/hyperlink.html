@@ -1,0 +1,193 @@
+<html>
+<head>
+<title>Insert Hyperlink</title>
+
+</style>
+<script language="JScript">
+var loaded = 0;
+var re = new RegExp();
+re.compile('<\s*a.*?name="?(.+?)[" >]', "gi");
+
+function onLoad(){
+  loaded = 1;
+}
+
+function divClick(div, other){
+  if (div.disabled){
+    div.disabled = false;   
+    other.disabled = true;
+    other.style.cursor = 'hand';
+  }
+}
+
+function load(){
+  var form = document.frmHyperlink;
+  var txt = form.hyper_text;
+  switch (parent.prevRangeType){
+    case "Control":
+      if (parent.prevRange(0).tagName.toUpperCase() == "IMG"){
+        txt.value = 'Hyperlink image';
+        document.all.txtto.disabled = true;
+      }else{;
+        parent.popupToggle(parent.document.all.hyperlink);
+        parent.document.all.ewe.focus();
+      }
+      break;
+    case "Text":
+ /*     var htmlText = parent.prevRange.htmlText;
+      var rexp = /href=\"?\S*?\"?/ig;
+      var results = rexp.exec(htmlText);
+
+      if (results){
+        alert(results[0]);
+        alert(results[1]);
+      }*/
+      txt.value = parent.prevRange.text;
+      break; 
+  }
+  var sel = frmHyperlink.hyper_bookmark;
+  sel.options[0] = new Option("None", "ewenone");
+  var results;
+  for (var i = 1; results = re.exec(parent.document.all.ewe.innerHTML); ++i){
+    sel.options[i] = new Option(results[1], results[1]);
+  }
+}
+
+function insertHyper(){
+  var form = document.frmHyperlink;
+  var txt = form.hyper_text.value;
+  var isImage = document.all.txtto.disabled;
+  if (!txt && !isImage){
+    alert('Please enter the text you want to have linked');
+    form.hyper_text.focus(); 
+    return;
+  }
+
+  if (!document.all.link.disabled){
+    var lnk = document.createElement('A');
+    var type = form.hyper_type.options[form.hyper_type.selectedIndex].value;
+    var url = form.hyper_address.value;
+    if (!url){
+      alert('Please enter a valid url/email');
+      form.hyper_address.focus();
+      return false;
+    }
+
+    switch(type){
+      case "web":
+        if (url.match(/^w{3}\.?\S+\.[a-z]{2,5}/i)){
+          url = 'http://' + url;
+        }
+        break;
+      case "email":
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/.test(url)){
+          alert("Please enter a valid email\n\nExample: bill@microsoft.com");
+          return false;
+        }
+        if (url.substr(0,7) != "mailto:"){
+          url = 'mailto:' + url;
+        }
+        break;
+    }
+
+  
+    lnk.href = url;
+    if (form.hyper_blank.checked && !form.hyper_blank.disabled) lnk.target += '_blank';
+    if (!isImage){
+      lnk.innerText = txt;
+      parent.prevRange.pasteHTML(lnk.outerHTML);
+    }else{
+      parent.prevRange(0).applyElement(lnk);
+    }
+
+  }else{ 
+    var lnk
+    if (form.hyper_anchor.value){
+      lnk = document.createElement("A name='" + form.hyper_anchor.value + "'");
+    }else if (form.hyper_bookmark.selectedIndex > 0){
+      lnk = document.createElement("A");
+      lnk.href = "#" + form.hyper_bookmark.options[form.hyper_bookmark.selectedIndex].value;
+    }else{
+      alert('Please create a new bookmark or link to an existing one');
+      return false;
+    }
+    if (!isImage){
+      lnk.innerText = txt;
+      parent.prevRange.pasteHTML(lnk.outerHTML);
+    }else{
+      parent.prevRange(0).applyElement(lnk);
+    }
+  }
+
+  form.hyper_text.value =  "";
+  form.hyper_address.value = "";
+  form.hyper_type.selectedIndex = 0;
+  form.hyper_blank.checked = false;
+  form.hyper_anchor.value = "";
+  form.hyper_bookmark.selectedIndex = 0;
+
+  parent.popupToggle(parent.document.all.hyperlink);
+  parent.document.all.ewe.focus();
+}
+
+</script>
+
+</head>
+<link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+<body style="background-color:#FFFFFF;overflow:hidden;" onLoad="onLoad();" onClick="parent.popupClick(parent.document.all.hyperlink);" unselectable="on">
+  <form name="frmHyperlink" onSubmit="return false;" unselectable="on">
+    <div id="txtto">
+    <table border="0" cellspacing="0" cellpadding="1" unselectable="on" style="width:100%;border:1px solid;">
+      <tr unselectable="on">
+        <td class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="2">Text to hyperlink</td>
+      </tr>
+      <tr unselectable="on">
+        <td unselectable="on" width="15">&nbsp;</td>
+        <td class="columnHeader" style="font-weight: 600;" unselectable="on"><input type="text" name="hyper_text" size="25"></td>
+      </tr>
+    </table>
+    </div>
+  <br>
+  <div id="link" unselectable="on" style="border:1px solid;"  onclick="divClick(this, document.all.bookmark);">
+  <table width="275" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="275" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="3">Hyperlink<br><br></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+     <td width="100" class="columnHeader" unselectable="on">Type: </td>
+      <td width="160" class="columnHeader" unselectable="on"><select name="hyper_type" unselectable="on" onChange="document.frmHyperlink.hyper_blank.disabled = (this.options[this.selectedIndex].value == 'email');"><option value="web">Webpage<option value="email">Email</select></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Addresss: </td>
+      <td width="160" unselectable="on"><input type="text" size="25" name="hyper_address"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="260" colspan="2" class="columnHeader" unselectable="on"><input type="checkbox" name="hyper_blank" value="blank"> Open in new window</td>
+    </tr>
+  </table>
+  </div>
+  <br>
+  <div id="bookmark" disabled="true" style="border:1px solid;cursor=hand;" unselectable="on" onclick="divClick(this, document.all.link);">
+  <table width="275" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="275" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="3">Bookmark<br><Br></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">New Anchor: </td>
+      <td width="160" unselectable="on"><input type="text" name="hyper_anchor" size="15" onKeyDown="document.frmHyperlink.hyper_bookmark.selectedIndex = 0;"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Bookmark: </td>
+      <td width="160" unselectable="on"><select name="hyper_bookmark" unselectable="on" onChange="document.frmHyperlink.hyper_anchor.value = '';"></select></td>
+    </tr> 
+  </table>
+  </div><br>
+  <input type="submit" value="Create" onClick="insertHyper();">
+  </form>
+</body>
+</html>

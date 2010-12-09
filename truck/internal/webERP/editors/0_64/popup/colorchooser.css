@@ -1,0 +1,9 @@
+.colorcell{
+        height: 12px;
+        width: 12px;
+}
+.colorcellselected{
+        height: 10px;
+        width: 10px;
+        border: 1px solid;
+}

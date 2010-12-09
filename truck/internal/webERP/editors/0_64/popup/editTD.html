@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Edit Cell Properties</title>
+<script language="JScript">
+var ptd;
+
+function loadTD(td){
+  ptd = td;
+  var frm = document.frmTD;
+  frm.bgcolor.value = (ptd.style.backgroundColor)?ptd.style.backgroundColor:ptd.bgColor;
+  var algn = (ptd.style.textAlign)?ptd.style.textAlign:ptd.align;
+  switch (algn.toUpperCase()){
+    case 'CENTER':
+      frm.align.selectedIndex = 1;
+      break;
+    case 'JUSTIFY':
+      frm.align.selectedIndex = 2;
+      break;
+    case 'RIGHT':
+      frm.align.selectedIndex = 3;
+      break;
+    DEFAULT:
+      frm.align.selectedIndex = 0;
+      break;
+  }
+  var valgn = ptd.vAlign;
+  switch (valgn.toUpperCase()){
+    case 'TOP':
+      frm.valign.selectedIndex = 1;
+      break;
+    case 'BOTTOM':
+      frm.valign.selectedIndex = 2;
+      break;
+    case 'BASELINE':
+      frm.valign.selectedIndex = 3;
+      break;
+    DEFAULT:
+      frm.valign.selectedIndex = 0;
+      break;
+  }
+  var wdth = (ptd.style.width)?ptd.style.width:ptd.width;
+  var wLen = wdth.length;
+  if (wdth.substr(wdth.length-1) == '%'){
+    frm.width_type.selectedIndex = 0;
+    frm.width.value = wdth.substr(0,wLen-1);
+  }else{
+    frm.width_type.selectedIndex = 1;
+    frm.width.value = (wdth.substr(wLen-2).toUpperCase() == "PX")?wdth.substr(0,wLen-2):wdth;
+  }
+}
+
+function getColor(){
+  parent.popupShowForeColor(1, parent.document.all.editTD.style.left,parent.document.all.editTD.style.top);
+}
+
+function popupTDEdit(){
+  var frm = document.frmTD;
+  if (frm.bgcolor.value){
+    ptd.bgColor = '';
+    ptd.style.backgroundColor = frm.bgcolor.value;
+  }
+
+  ptd.align = '';
+  ptd.style.textAlign = frm.align.options[frm.align.selectedIndex].value;
+  ptd.vAlign = frm.valign.options[frm.valign.selectedIndex].value;
+
+  if (frm.width.value){
+    ptd.width = '';
+    ptd.style.width = frm.width.value +  frm.width_type.options[frm.width_type.selectedIndex].value;
+  }
+  parent.popupToggle(parent.document.all.editTD);
+  parent.document.all.ewe.focus();
+}
+</script>
+</head>
+<link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+<body style="background-color:#FFFFFF;overflow:hidden;" onClick="parent.popupClick(parent.document.all.table);" unselectable="on">
+  <form name="frmTD"  onSubmit="return false;" unselectable="on">
+  <table width="350" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="350" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="2">Appearance <hr size="1" noshad></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="75" class="columnHeader" unselectable="on">Background:</td>
+      <td width="275" unselectable="on"><input type="text" size="7" maxlength="7" name="bgcolor"> <a href="#" onclick="getColor();"><img src="../images/Palette.gif" style="width:20;height:20;position:relative;top:2.5px;" alt="Colour Palette" border="0"></a></td>
+    </tr>
+  </table><br>
+  <table width="350" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="350" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="4">Align <hr size="1" noshad></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="75" class="columnHeader" unselectable="on">Horizontal: </td>
+      <td width="100" unselectable="on"><select name="align"><option value="left">Left<option value="center">Center<option value="Justify">Justify<option value="Right">Right</select></td>
+      <td width="50" class="columnHeader" unselectable="on">Vertical:</td>
+      <td width="150" unselectable="on"><select name="valign"><option value="Middle">Middle<option value="Top">Top<option value="Bottom">Bottom<option value="Baseline">Baseline</select></td>
+    </tr>
+  </table><br>
+  <table width="350" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="350" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="2">Other <hr size="1" noshad></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="75" class="columnHeader" unselectable="on">Width: </td>
+      <td width="275" unselectable="on"><input type="text" size="2" maxlength="4" name="width"> <select unselectable="on" name="width_type"><option value="%">%<option value="px">pixels</select> </td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="75" class="columnHeader" unselectable="on">&nbsp;</td>
+      <td width="275" unselectable="on"><input type="button" value="Edit" onClick="popupTDEdit();"></td>
+    </tr>
+  </table>
+  </form>
+</body>
+</html>

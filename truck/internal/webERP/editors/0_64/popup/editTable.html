@@ -1,0 +1,114 @@
+<html>
+<head>
+<script language="JScript">
+var pt;
+function loadTable(table){
+  pt = table;
+  var frm = document.frmTable;
+
+  var wdth = (pt.style.width)?pt.style.width:pt.width;
+  var wLen = wdth.length;
+  if (wdth.substr(wdth.length-1) == '%'){
+    frm.width_type.selectedIndex = 0;
+    frm.width.value = wdth.substr(0,wLen-1);
+  }else{
+    frm.width_type.selectedIndex = 1;
+    frm.width.value = (wdth.substr(wLen-2).toUpperCase() == "PX")?wdth.substr(0,wLen-2):wdth;
+  }
+  switch (pt.align.toUpperCase()){
+    case 'LEFT':
+      frm.align.selectedIndex = 1;
+      break;
+    case 'CENTER':
+      frm.align.selectedIndex = 2;
+      break;
+    case 'RIGHT':
+      frm.align.selectedIndex = 3;
+      break;
+    DEFAULT:
+      frm.align.selectedIndex = 0;
+      break;
+  }
+  frm.border.value = pt.border || 0;
+  frm.padding.value = pt.cellPadding;
+  frm.spacing.value = pt.cellSpacing;
+}
+
+function popupTableEdit(){
+  var frm = document.frmTable;
+
+  var border = frm.border.value;
+  var cpadding = frm.padding.value;
+  var cspacing = frm.spacing.value;
+  var align = frm.align.options[frm.align.selectedIndex].value;
+
+  pt.align = align;
+
+  if (cspacing)
+    pt.cellSpacing = cspacing;
+  if (cpadding)
+    pt.cellPadding = cpadding;
+  if (border){
+    tds = pt.getElementsByTagName("TD");
+    for (var i = 0; i < tds.length; ++i){
+      tds[i].runtimeStyle.cssText = '';
+    }
+    pt.border = border;
+  }
+
+  if (frm.width.value){
+    pt.width = '';
+    pt.style.width = frm.width.value +  frm.width_type.options[frm.width_type.selectedIndex].value;
+  }
+  parent.popupToggle(parent.document.all.EditTable);
+  parent.borderToggle(0);
+  parent.document.all.ewe.focus();
+}
+
+
+</script>
+</head>
+<link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+<body style="background-color:#FFFFFF;overflow:hidden;" onClick="parent.popupClick(parent.document.all.EditTable);" unselectable="on">
+  <form name="frmTable" onSubmit="return false;" unselectable="on">
+  <table width="275" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="275" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="3">Table Properties <hr size="1" noshad></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Width: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="width"> <select  unselectable="on" name="width_type"><option value="%">%<option value="">pixels</select> </td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Alignment: </td>
+      <td width="160" unselectable="on"><select name="align"><option value="left">Default<option value="left">Left<option value="center">Center<option value="right">Right</select></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Border Size: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="border" value="0"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Cell Padding: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="padding" value="2"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Cell Spacing: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="spacing" value="2"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="275" unselectable="on" colspan="3">&nbsp;</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">&nbsp;</td>
+      <td width="160" unselectable="on"><input type="button" value="Edit" onClick="popupTableEdit();"></td>
+    </tr>
+  </table>
+  </form>
+</body>
+</html>

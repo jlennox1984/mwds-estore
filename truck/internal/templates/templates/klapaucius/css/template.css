@@ -1,0 +1,261 @@
+body{
+	background			: #dae0e7 url(../images/body_topbg.png) repeat-x;
+	margin				: 0px;
+	padding				: 0px;
+	margin-top			: 8px !important;
+}
+
+body,tr,td,th{
+	font				: 11px arial;
+	vertical-align		: top;
+}
+
+
+
+a{
+	color				:#697e9a;
+}
+.topcontainer{
+	background			: url(../images/top_belowmenu.gif) bottom no-repeat;
+	height				: 20px;
+}
+
+.headercontainer{
+	background			: #FFFFFF;
+	
+}
+
+.header{
+	background			: #697e9a url(http://www.mahsie.com/images//bkwmnamecontainer.gif) repeat-x;
+	height				: 82px;
+}
+
+.submenucontainer{
+	background			: #d2d8e1;
+}
+#sitenamecontainer{
+	border				: 0px solid #d2d8e1;
+	margin-left			: 200px;
+	margin-top			: 10px;
+	line-height			: 40px;
+	padding-left		: 20px;
+	color				: #d2d8e1;
+	font-size			: 60px;
+background			: #697e9a;
+}
+.middlecontainer{
+	background			: #FFFFFF;
+}
+
+.maincontenttable{
+	margin-top			: 12px;
+}
+
+.mainbodycontainer{
+	padding-left		: 10px;
+}
+.bottommodulescontainer{
+	padding-top			: 20px;
+}
+
+.bottomcontainer a{
+	color				: #FFFFFF;
+}
+
+
+.leftmodulescontainer{
+	background			: #aeb9c9 url(../images/modulesbg.png) repeat-y;
+}
+
+.footercontainer{
+	background			: #697e9a;
+	margin				: 10px 0px;
+}
+
+.mtf{
+	padding-bottom		: 5px;
+	text-align			:center;
+}
+
+/*--------------------- 
+Menu 
+--------------------- */
+.topmenucontainer{
+	background			: #FFF;
+}
+
+#topmenu  ul {
+  	margin				: 0;
+  	padding				: 0px;
+  	list-style			: none;
+}
+
+
+#topmenu  li {
+  	float				: left;  
+  	height				: 28px;
+  	background			: url(../images/tab_l.gif) no-repeat left 0px;
+  	margin				: 0; 
+  	margin-left			: 1px;
+  	padding-left		: 6px;
+  	margin-top			: 10px;
+}
+
+#topmenu  li a {	
+	display				: block; 
+	float				: left;  
+	line-height			: 28px;
+  	font-size			: 11px; 
+	text-decoration		: none; 
+  	color				: #d2d8e1;
+  	background			: url(../images/tab_r.gif) no-repeat right 0px;
+  	padding				: 0px 15px 0px 10px;
+}
+
+#topmenu li a:hover{  
+	color				: #FFFFFF;
+}
+
+#topmenu li#active     { 
+	background-position	: 0% -48px;  
+	}
+#topmenu li a#current   { 
+	background-position	: 100% -48px; 
+	color				: #697e9a; 
+}
+
+
+
+
+ul#subnavlist{
+	margin				: 0px;
+	padding				: 0px;
+	line-height			: 20px;
+	
+	
+}
+
+ul#subnavlist li{
+	display				: inline;
+	padding				: 0px 10px;
+
+}
+
+ul#subnavlist li a{
+	color				: #000000;
+	text-decoration		: none;
+	font-weight			: bold;
+	
+}
+
+ul#subnavlist li a:hover{
+	color				: #000000;
+	text-decoration		: underline;
+	
+}
+
+/* Table of Contents */
+
+table.contenttoc{
+	border				: 2px solid  #BCC10C;	
+	margin				: 3px;
+}
+
+.contenttoc th{
+	background-color	: #697e9a;
+	padding				: 3px;
+	color				: #FFFFFF;
+	font-weight			: bold;
+}
+.contenttoc td {
+	padding				: 3px;
+}
+
+/* ################### MAIN AND SUB MENU SYSTEM ################### 
+* You can control the way menu behave and look
+* by using the CSS settings below
+*/
+ul#mainlevel-nav
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0.8em;
+}
+
+ul#mainlevel-nav li
+{
+	display: block;
+	background-image: none;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 1px;
+	padding-top: 1px;
+	float: left;
+	margin: 0;
+	width: auto !important;
+	width_: 15%;
+	font-size: 11px;
+	line-height: 21px;
+	white-space: nowrap;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+}
+
+#mainlevel-nav a {
+	font-family: verdana;
+	font-size: 11px;
+	line-height: 16px;
+	padding-bottom: 5px;
+	text-decoration: none;
+	font-weight	: bold;
+	width: auto;
+	color: #FFFFCC;
+}
+#mainlevel-nav a:hover {
+	width: auto;
+	color: #FF8800;
+	text-decoration: none;
+}
+
+.mainlevel {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	width: 159px;
+}
+
+a.mainlevel:link, a.mainlevel:visited {
+	display: block;
+	width:100%;
+	color: #2e3949;
+	padding-top: 2px;
+	padding-left: 5px;
+	height: 20px !important;
+	height: 25px;
+	text-decoration: bold;
+	width: 159px !important;
+	width: 165px;
+
+}
+
+a.mainlevel:hover {
+	background-color: #DDEEFF;
+
+}
+.sublevel {
+	border-top       : 1px solid #C0C0C0;
+}
+
+a.sublevel:link, a.sublevel:visited {
+	padding-left: 1px;
+	vertical-align: middle;
+	font-size: 11px;
+	font-weight: bold;
+	color: #ff6600;
+	text-align: left;
+}
+
+a.sublevel:hover {
+	color: #ffcc00;
+	text-decoration: none;
+}

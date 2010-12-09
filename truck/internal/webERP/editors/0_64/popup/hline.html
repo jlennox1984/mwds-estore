@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Horizontal Line</title>
+  </head>
+  <script language="JScript">
+  function popupHlinePreview(){
+    var frm = document.frmHline
+    var hline = document.all.hline_preview;
+    if (!/^\d+$/.test(frm.hline_width.value) || !/^\d+$/.test(frm.hline_height.value))
+      return;
+    hline.style.width = frm.hline_width.value + frm.hline_width_type.value;
+    hline.style.height = frm.hline_height.value;
+    hline.style.textAlign = frm.hline_align.options[frm.hline_align.selectedIndex].value;
+  }
+  function popupHlineInsert(){
+    var frm = document.frmHline;
+    opener.prevRange.pasteHTML("<hr style=\"width:" + frm.hline_width.value + frm.hline_width_type.value + ";size:" + frm.hline_height.value + ";text-align:" + frm.hline_align.options[frm.hline_align.selectedIndex].value + "\">");
+    self.close();
+    opener.document.all.ewe.focus();
+  }
+  </script>
+  <link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+    <body style="background-color:#FFFFFF;overflow:hidden;" unselectable="on">
+      <center>
+        <form name="frmHline" onSubmit="return false;" unselectable="on">
+          <table width="275" border="0" cellspacing="2" cellpadding="2" unselectable="on">
+            <tr unselectable="on">
+              <td width="50" unselectable="on">&nbsp;</td>
+              <td width="50" class="columnHeader" unselectable="on">Width:
+              </td>
+              <td width="50" unselectable="on"><input type="text" size="3" maxlength="4" name="hline_width" value="100" onKeyUp="popupHlinePreview();"></td>
+              <td width="125" unselectable="on"><select unselectable="on" name="hline_width_type" onChange="popupHlinePreview();"><option value="%">
+                  %<option value="">
+                  pixels</select></td>
+            </tr>
+            <tr>
+              <td width="50" unselectable="on">&nbsp;</td>
+              <td width="50" class="columnHeader" unselectable="on">Height:
+              </td>
+              <td width="50" unselectable="on"><input type="text" size="3" maxlength="4" name="hline_height" value="2" onKeyUp="popupHlinePreview();"></td>
+              <td width="125" unselectable="on">pixels</td>
+            </tr>
+            <tr>
+              <td width="50" unselectable="on">&nbsp;</td>
+              <td width="50" class="columnHeader" unselectable="on">Align:
+              </td>
+              <td width="50" unselectable="on"><select unselectable="on" name="hline_align" onChange="popupHlinePreview();"><option value="left">
+                  left<option value="center" selected>
+                  center<option value="right">
+                  right</select></td>
+              <td width="125" unselectable="on">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="50" unselectable="on">&nbsp;</td>
+              <td width="50" unselectable="on">&nbsp;</td>
+              <td width="50" unselectable="on">&nbsp;</td>
+              <td width="125" unselectable="on"><input type="button" unselectable="on" value="Create" onClick="popupHlineInsert();"></td>
+            </tr>
+          </table>
+      </center>
+      <table width="100%" border="0" cellpaddin="2" cellspacing="2">
+        <tr>
+          <td class="columnHeader">Preview</td>
+        </tr>
+        <tr>
+          <td><hr id="hline_preview" style="width:100%; height:2px; text-align:center">
+          </td>
+        </tr>
+      </table>
+      </form>
+    </body>
+</html>

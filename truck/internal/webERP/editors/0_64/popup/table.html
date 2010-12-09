@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Insert Table</title>
+<script language="JScript">
+  function tableEnableWidth(isChecked){
+     document.frmTable.table_width.disabled = document.frmTable.table_width_type.disabled = !isChecked;
+  }
+  function popupTableInsert(){
+    var frm = document.frmTable;
+    var rows = frm.table_rows.value || 1;
+    var cols = frm.table_cols.value || 1;
+    var border = frm.table_border.value || 0;
+    var cpadding = frm.table_padding.value || 0;
+    var cspacing = frm.table_spacing.value || 0;
+    var align = frm.table_align.options[frm.table_align.selectedIndex].value;
+ 
+    var table = '<table cellspacing="' + cspacing + '" cellpadding="' + cpadding + '" border="' + border + '"';
+    if (frm.table_specify_width.checked && frm.table_width.value){
+      table += ' width="' + frm.table_width.value + frm.table_width_type.options[frm.table_width_type.selectedIndex].value + '"';
+    }else{
+      table += ' width="80"';
+    }
+      
+    if (align && align != 0){
+      table += ' align="' + align + '"';
+    }
+    table += ">\n";
+    for (var i = 0; i < rows; ++i){
+      table += "<tr>\n"
+      for (var j=0; j < cols; ++j){
+        table += "<td>&nbsp;</td>\n";
+      }
+      table += "</tr>\n";
+    }
+    table += "</table>\n";
+
+    parent.prevRange.pasteHTML(table);
+    parent.popupToggle(parent.document.all.table);
+    parent.borderToggle(0);
+    parent.document.all.ewe.focus();
+  }
+</script>
+
+</head>
+<link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+<body style="background-color:#FFFFFF;overflow:hidden;" onClick="parent.popupClick(parent.document.all.table);" unselectable="on">
+  <form name="frmTable" onSubmit="return false;" unselectable="on">
+  <table width="275" border="0" cellspacing="0" cellpadding="1" unselectable="on">
+    <tr unselectable="on">
+      <td width="275" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="3">Size <hr size="1" noshad></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Rows: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="table_rows" value="2"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Columns: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="table_cols" value="2"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Sepcify Width: </td>
+      <td width="160" unselectable="on"><input type="checkbox" name="table_specify_width" value="1" onClick="tableEnableWidth(this.checked);"> <input type="text" size="2" maxlength="4" name="table_width" value="100" disabled> <select disabled unselectable="on" name="table_width_type"><option value="%">%<option value="">pixels</select> </td>
+    </tr>
+    <tr unselectable="on">
+      <td width="275" unselectable="on" colspan="3">&nbsp;</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="275" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="3">Layout <hr size="1" noshad></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Alignment: </td>
+      <td width="160" unselectable="on"><select name="table_align"><option value="0">Default<option value="left">Left<option value="center">Center<option value="right">Right</select></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Border Size: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="table_border" value="0"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Cell Padding: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="table_padding" value="2"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Cell Spacing: </td>
+      <td width="160" unselectable="on"><input type="text" size="2" maxlength="4" name="table_spacing" value="2"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="275" unselectable="on" colspan="3">&nbsp;</td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">&nbsp;</td>
+      <td width="160" unselectable="on"><input type="button" value="Create" onClick="popupTableInsert();"></td>
+    </tr>
+  </table>
+  </form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.ewe_paramvalue {
+	color : #0000FF ;
+	font-family : "Courier New";
+	font-size : 13px;
+}
+.ewe_htmlcomment {
+	color : #808080 ;
+	font-family : "Courier New";
+	font-size : 12px;
+	font-style : italic;
+}
+.ewe_tag {
+	color : #000080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.ewe_img {
+	color : #800080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.ewe_A {
+	color : #008000;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.ewe_form {
+	color : #FF8000;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.ewe_table {
+	color : #008080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.ewe_entity {
+	color : #000000;
+	font-family : "Courier New";
+	font-size : 12px;
+	font-weight : bold;
+}
+.ewe_styletag {
+	color : #800080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.ewe_styleitem {
+	color : #800080;
+	font-family : "Courier New";
+	font-size : 12px;
+}

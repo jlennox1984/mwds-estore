@@ -1,0 +1,113 @@
+<?php
+/**
+* @version		$Id: configuration.php-dist 6174 2007-01-04 12:00:06Z louis $
+* @package		Joomla
+* @copyright	Copyright (C) 2005 - 2006 Open Source Matters. All rights reserved.
+* @license		GNU/GPL, see LICENSE.php
+* Joomla! is free software and parts of it may contain or be derived from the
+* GNU General Public License or other free or open source software licenses.
+* See COPYRIGHT.php for copyright notices and details.
+*
+* -------------------------------------------------------------------------
+* THIS SHOULD ONLY BE USED AS A LAST RESORT WHEN THE WEB INSTALLER FAILS
+*
+* If you are installing Joomla manually i.e. not using the web installer
+* then rename this file to configuration.php e.g.
+*
+* UNIX -> mv configuration.php-dist configuration.php
+* Windows -> rename configuration.php-dist configuration.php
+*
+* Now edit this file and configure the parameters for your site and
+* database.
+*/
+class JConfig {
+	/**
+	* -------------------------------------------------------------------------
+	* Site configuration section
+	* -------------------------------------------------------------------------
+	*/
+	/* Site Settings */
+	var $offline = '0';
+	var $offline_message = 'This site is down for maintenance.<br /> Please check back again soon.';
+	var $sitename = 'Joomla!';			// Name of Joomla site
+	var $editor = 'tinymce';
+	var $list_limit = '20';
+	var $legacy = '0';
+
+	/**
+	* -------------------------------------------------------------------------
+	* Database configuration section
+	* -------------------------------------------------------------------------
+	*/
+	/* Database Settings */
+	var $dbtype = 'mysql';					// Normally mysql
+	var $host = 'localhost';				// This is normally set to localhost
+	var $user = '';							// MySQL username
+	var $password = '';						// MySQL password
+	var $db = '';							// MySQL database name
+	var $dbprefix = 'jos_';					// Do not change unless you need to!
+
+	/* Server Settings */
+	var $secret = 'FBVtggIk5lAzEU9H'; 		//Change this to something more secure
+	var $gzip = '0';
+	var $lifetime = '900';					// Session time
+	var $error_reporting = '-1';
+	var $helpurl = 'http://help.joomla.org';
+	var $xmlrpc_server = '0';
+	var $ftp_host = '';
+	var $ftp_port = '';
+	var $ftp_user = '';
+	var $ftp_pass = '';
+	var $ftp_root = '';
+	var $ftp_enable = '';
+	var $tmp_path	= '/tmp';
+	var $log_path	= '/var/logs';
+
+	/* Locale Settings */
+	var $lang_site = 'en-GB';
+	var $lang_administrator = 'en-GB';
+	var $language = 'en-GB';
+	var $lang = 'english';					// Site language
+	var $offset = '0';
+	var $offset_user = '0';
+
+	/* Mail Settings */
+	var $mailer = 'mail';
+	var $mailfrom = '';
+	var $fromname = '';
+	var $sendmail = '/usr/sbin/sendmail';
+	var $smtpauth = '0';
+	var $smtpuser = '';
+	var $smtppass = '';
+	var $smtphost = 'localhost';
+
+	/* Cache Settings */
+	var $caching = '0';
+	var $caching_tmpl = '0';
+	var $caching_page = '0';
+	var $cachetime = '900';
+
+	/* Debug Settings */
+	var $debug      = '0';
+	var $debug_db 	= '0';
+	var $debug_lang = '0';
+
+	/* Meta Settings */
+	var $MetaDesc = 'Joomla! - the dynamic portal engine and content management system';
+	var $MetaKeys = 'joomla, Joomla';
+	var $MetaTitle = '1';
+	var $MetaAuthor = '1';
+
+	/* Statistics Settings */
+	var $enable_stats = '0';
+	var $enable_log_items = '0';
+	var $enable_log_searches = '0';
+
+	/* SEO Settings */
+	var $sef = '0';
+
+	/* Feed Settings */
+	var $feed_limit   = 10;
+	var $feed_summary = 0;
+}
+?>

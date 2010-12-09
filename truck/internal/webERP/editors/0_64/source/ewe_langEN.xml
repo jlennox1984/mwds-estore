@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<language lang="english" version="0.63">
+  <img id="removeformat">
+    <alt>Remove Formatting</alt>
+  </img>
+  <img id="save">
+    <alt>Save</alt>
+  </img>
+  <img id="undo">
+    <alt>Undo (Ctrl+Z)</alt>
+  </img>
+  <img id="redo">
+    <alt>Redo (Ctrl+Y)</alt>
+  </img>
+  <img id="cut">
+    <alt>Cut (Ctrl+X)</alt>
+  </img>
+  <img id="copy">
+    <alt>Copy (Ctrl+C)</alt>
+  </img>
+  <img id="paste">
+    <alt>Paste (Ctrl+V)</alt>
+  </img>
+  <img id="bold">
+    <alt>Bold (Ctrl+B)</alt>
+  </img>
+  <img id="italic">
+    <alt>Italic (Ctrl+I)</alt>
+  </img>
+  <img id="zoomout">
+    <alt>Zoom out</alt>
+  </img>
+  <img id="zoomin">
+    <alt>Zoom in</alt>
+  </img>
+  <img id="underline">
+    <alt>Underline (Ctrl+U)</alt>
+  </img>
+  <img id="superscript">
+    <alt>Superscript</alt>
+  </img>
+  <img id="subscript">
+    <alt>Subscript</alt>
+  </img>
+  <img id="outdent">
+    <alt>Decrease Indent</alt>
+  </img>
+  <img id="indent">
+    <alt>Increase Indent</alt>
+  </img>
+  <img id="justifyleft">
+    <alt>Align Left</alt>
+  </img>
+  <img id="justifycenter">
+    <alt>Align Center</alt>
+  </img>
+  <img id="justifyright">
+    <alt>Align Right</alt>
+  </img>
+  <img id="insertorderedlist">
+    <alt>Ordered List</alt>
+  </img>
+  <img id="insertunorderedlist">
+    <alt>Unordered List</alt>
+  </img>
+  <img id="createlink">
+    <alt>Add Hyperlink</alt>
+  </img>
+  <img id="insertimage">
+    <alt>Insert Image</alt>
+  </img>
+  <img id="inserthr">
+    <alt>Insert Horizontal Line</alt>
+  </img>
+  <img id="inserttable">
+    <alt>Insert Table</alt>
+  </img>
+    <img id="toggleborders">
+      <alt>Show/Hide table borders</alt>
+    </img>
+  <img id="insertsymbol">
+    <alt>Insert Symbol (special character)</alt>
+  </img>
+  <img id="forecolor">
+    <alt>Forecolor</alt>
+  </img>
+  <img id="viewnormal">
+    <alt>Normal View</alt>
+  </img>
+  <img id="viewhtml">
+    <alt>HTML View</alt>
+  </img>
+  <select id="symbols">
+    <option value="-1" default="true">Symbol</option>
+    <option value="&#162;">&#162;</option>
+    <option value="&#163;">&#163;</option>
+    <option value="&#165;">&#165;</option>
+    <option value="&#169;">&#169;</option>
+    <option value="&#171;">&#171;</option>
+    <option value="&#187;">&#187;</option>
+    <option value="&#174;">&#174;</option>
+    <option value="&#188;">&#188;</option>
+    <option value="&#189;">&#189;</option>
+    <option value="&#190;">&#190;</option>
+    <option value="&#192;">&#192;</option>
+    <option value="&#194;">&#194;</option>
+    <option value="&#198;">&#198;</option>
+    <option value="&#199;">&#199;</option>
+    <option value="&#200;">&#200;</option>
+    <option value="&#201;">&#201;</option>
+    <option value="&#202;">&#202;</option>
+    <option value="&#204;">&#204;</option>
+    <option value="&#206;">&#206;</option>
+    <option value="&#210;">&#210;</option>
+    <option value="&#212;">&#212;</option>
+    <option value="&#217;">&#217;</option>
+    <option value="&#219;">&#219;</option>
+    <option value="&#224;">&#224;</option>
+    <option value="&#225;">&#225;</option>
+    <option value="&#226;">&#226;</option>
+    <option value="&#230;">&#230;</option>
+    <option value="&#231;">&#231;</option>
+    <option value="&#232;">&#232;</option>
+    <option value="&#233;">&#233;</option>
+    <option value="&#234;">&#234;</option>
+    <option value="&#236;">&#236;</option>
+    <option value="&#238;">&#238;</option>
+    <option value="&#242;">&#242;</option>
+    <option value="&#244;">&#244;</option>
+    <option value="&#249;">&#249;</option>
+    <option value="&#251;">&#251;</option>
+  </select> 
+  <select id="fontsize">
+    <option value="-1" default="true">Size</option>
+    <option value="1">1 (8pt)</option>
+    <option value="2">2 (10pt)</option>
+    <option value="3">3 (12pt)</option>
+    <option value="4">4 (14pt)</option>
+    <option value="5">5 (18pt)</option>
+    <option value="6">6 (24pt)</option>
+    <option value="7">7 (36pt)</option>
+  </select>
+  <select id="formatblock">
+    <option value="Normal" default="true">Normal</option>
+    <option value="Heading 1">H1</option>
+    <option value="Heading 2">H2</option>
+    <option value="Heading 3">H3</option>
+    <option value="Heading 4">H4</option>
+    <option value="Heading 5">H5</option>
+    <option value="Heading 6">H6</option>
+  </select>
+  <select id="fontfamily">
+    <option value="-1" default="true">Font</option>
+    <option value="Arial">Arial</option>
+    <option value="Courier New">Courier New</option>
+    <option value="Tahoma">Tahoma</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Verdana">Verdana</option>
+  </select>
+  <popup id="hyperlink">
+    <title>Hyperlink</title>
+  </popup>
+  <popup id="image">
+    <title>Image Repository</title>
+  </popup>
+  <popup id="hline">
+    <title>Horizontal Line</title>
+  </popup>
+  <popup id="table">
+    <title>Table</title>
+  </popup>
+  <popup id="edittable">
+    <title>Edit Table</title>
+  </popup>
+  <popup id="editimage">
+    <title>Edit Image</title>
+  </popup>
+  <popup id="edittd">
+    <title>Edit Cell</title>
+  </popup>
+  <popup id="forecolorpopup">
+    <title>Select a color</title>
+  </popup>
+  <popup id="edithyperlink">
+    <title>Edit Hyperlink</title>
+  </popup>
+  <fontstyle>No Style</fontstyle>
+  <modeTitle>Mode</modeTitle>
+  <modeNormal>Normal</modeNormal>
+  <modeHTML>HTML   </modeHTML>
+  <zoomTitle>Zoom</zoomTitle>
+  <colorTitle>Color</colorTitle>
+  <borderStatus>Borders</borderStatus>
+  <borderStatusShow>Visible</borderStatusShow>
+  <borderStatusHide>Hidden</borderStatusHide>
+  <aboutEWE>About EWE</aboutEWE>
+  <delRow>Delete Row</delRow>
+  <delCol>Delete Column</delCol>
+  <headTD>Cell options</headTD>
+  <headIMG>Image options</headIMG>
+  <editTD>Edit Cell Properties</editTD>
+  <editIMG>Edit Image Properties</editIMG>
+  <editTABLE>Edit Table Properties</editTABLE>
+  <headTR>Row options</headTR>
+  <headTABLE>Table options</headTABLE>
+  <newRowBefore>Add Row Above</newRowBefore>
+  <newColBefore>Add Column Before</newColBefore>
+  <newColAfter>Add Column After</newColAfter>
+  <newRowAfter>Add Row Below</newRowAfter>
+  <mergeCellLeft>Merge Cell Left</mergeCellLeft>
+  <mergeCellRight>Merge Cell Right</mergeCellRight>
+  <mergeCellTop>Merge Cell Above</mergeCellTop>
+  <mergeCellBottom>Merge Cell Bellow</mergeCellBottom>
+  <contextCopy>Copy</contextCopy>
+  <contextCut>Cut</contextCut>
+  <contextPaste>Paste</contextPaste>
+  <headHYPER>Hyperlink options</headHYPER>
+  <removeHYPER>Remove Hyperlink</removeHYPER>
+  <editHYPER>Edit Hyperlink</editHYPER>
+</language>

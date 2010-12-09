@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mosinstall type="template" version="1.0.5">
+	<name>12business_wv</name>
+	<creationDate>07.03.2006</creationDate>
+	<author>Thomas Kirschnick</author>
+	<copyright>gnu/gpl</copyright>
+	<authorEmail>tk@webverwalter.com</authorEmail>
+	<authorUrl>www.webverwalter.com</authorUrl>
+	<version>1.0</version>
+	<description>Klassisches Business-Template</description>
+<files>
+	<filename>index.php</filename>
+	<filename>templateDetails.xml</filename>
+</files>
+<images>
+	<filename>images/header.jpg</filename>
+</images>
+<css>
+	<filename>css/template_css.css</filename>
+</css>
+</mosinstall>

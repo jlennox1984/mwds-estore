@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Standard Article Layout">
+		<message>
+			<![CDATA[STANDARD ARTICLE LAYOUT DESC]]>
+		</message>
+	</layout>
+	<state>
+		<name>Standard Article Layout</name>
+		<description>STANDARD ARTICLE LAYOUT DESC</description>
+		<url addParameterDir="/administrator/components/com_content/elements">
+			<param name="id" type="article" default="0" label="Select Article" description="An article" />
+		</url>
+		<params>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			<param name="unique_itemid" type="radio" default="0" label="Unique Itemid" description="Use a unique Itemid for the link">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		</params>
+		<advanced>
+			<param name="menu_image" type="imagelist" directory="/images/stories" hide_default="1" default="" label="Menu Image" description="PARAMMENUIMAGE" />
+			<param name="secure" type="radio" default="0" label="SSL Enabled" description="PARAMSECURE">
+				<option value="-1">Off</option>
+				<option value="0">Ignore</option>
+				<option value="1">On</option>
+			</param>
+		</advanced>
+	</state>
+</metadata>

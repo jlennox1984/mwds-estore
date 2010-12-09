@@ -1,0 +1,12 @@
+Version 0.64 description 3/Oct/2003 21:08
+-Thanks to Paul Davis for pointing out that the IsValidBrowser wasn't considernig IE 5.5 as valid
+-Thanks to Petr Macek for pointing out that I had confused my editHyperlink function names
+-leeuwen's word cleaner is part of the cleanup routine (http://www.openmymind.net/forum/viewtopic.php?t=334)
+-Manually entering a colour from the colour chooser will now work
+
+
+
+
+
+© Karl Seguin
+karl <at> openmymind DOT net

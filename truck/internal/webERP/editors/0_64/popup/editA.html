@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Edit Hyperlink Properties</title>
+<script language="JScript">
+var pa;
+function loadA(a){
+  pa = a;
+  var frm = document.forms['frmHyperlink'];
+  frm.hyper_text.value = a.innerText;
+  var tpe = a.href.substr(0,7).toLowerCase();
+  if (a.target.toLowerCase() == '_blank'){
+    frm.hyper_blank.checked = true;
+  }
+  frm.hyper_address.value = a.href;
+}
+function editHyper(){
+  var frm = document.forms['frmHyperlink'];
+  if (frm.hyper_blank.checked){
+    pa.target = '_blank';
+  }else{
+    pa.removeAttribute('target');
+  }
+
+  pa.innerText = frm.hyper_text.value;
+  pa.href = frm.hyper_address.value;
+  parent.popupToggle(parent.document.all.editHyperlink);
+  parent.document.all.ewe.focus();
+}
+</script>
+</head>
+<link REL="StyleSheet" TYPE="text/css" HREF="popup.css">
+<body style="background-color:#FFFFFF;overflow:hidden;" onClick="parent.popupClick(parent.document.all.table);" unselectable="on">
+  <form name="frmHyperlink" onSubmit="return false;" unselectable="on">
+    <div id="txtto">
+    <table border="0" cellspacing="0" cellpadding="1" unselectable="on" style="width:100%;border:1px solid;">
+      <tr unselectable="on">
+        <td class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="2">Text to hyperlink</td>
+      </tr>
+      <tr unselectable="on">
+        <td unselectable="on" width="15">&nbsp;</td>
+        <td class="columnHeader" style="font-weight: 600;" unselectable="on"><input type="text" name="hyper_text" size="25"></td>
+      </tr>
+    </table>
+    </div>
+  <br>
+  <table width="275" border="0" cellspacing="0" cellpadding="1" unselectable="on" style="width:100%;border:1px solid;">
+    <tr unselectable="on">
+      <td width="275" class="columnHeader" style="font-weight: 600;" unselectable="on" colspan="3">Hyperlink<br><br></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="100" class="columnHeader" unselectable="on">Addresss: </td>
+      <td width="160" unselectable="on"><input type="text" size="25" name="hyper_address"></td>
+    </tr>
+    <tr unselectable="on">
+      <td width="15" unselectable="on">&nbsp;</td>
+      <td width="260" colspan="2" class="columnHeader" unselectable="on"><input type="checkbox" name="hyper_blank" value="blank"> Open in new window</td>
+    </tr>
+  </table>
+  <br>  <input type="submit" value="Edit" onClick="editHyper();">
+  </form>
+</body>
+</html>
