@@ -23,7 +23,7 @@ $close_date = getDBInsertDateValue($_REQUEST["closedate"]);
 $current_user_id = $_REQUEST["current_user_id"];
 $assigned_user_id = $_REQUEST["assigned_user_id"];
 $accountname = $_REQUEST['account_name'];
-
+$salesmanid="S$assigned_user_id";
 global $vtlog;
 $vtlog->logthis("id is ".$id,'debug'); 
 $vtlog->logthis("assigned_user_id is ".$assigned_user_id,'debug');
@@ -33,6 +33,7 @@ $vtlog->logthis("current user id is ".$current_user_id,'debug');
 $vtlog->logthis("assigned user id is ".$assigned_user_id,'debug');
 $vtlog->logthis("accountname is ".$accountname,'debug');
 $vtlog->logthis("module is ".$module,'debug');
+$vtlog->logthis("sales man id is ".$salesmanid,'debug');
 
 //Retrieve info from all the tables related to leads
   $focus = new Lead();
@@ -277,7 +278,17 @@ $currcode = 'CDN';
 $adb->query($sql_debtor);
 
 
-$sql_insert_account = "INSERT INTO custbranch (accountid,brname,industry,annualrevenue,phoneno,faxno,rating,email,website,employees,braddress3,braddress6,braddress5,braddress4,braddress1,braddress2,brpostaddr3,brpostaddr6,brpostaddr5,brpostaddr4,brpostaddr1,brpostaddr2,branchcode, debtorno) VALUES (".$crmid.",'".$accountname ."','".$row["industry"] ."','" .$row["annualrevenue"] ."','" .$row["phone"] ."','".$row["fax"] ."','" .$row["rating"] ."','" .$row["email"] ."','" .$row["website"] ."','" .$row["noofemployees"] ."','".$row["city"] ."','" .$row["code"] ."','" .$row["country"] ."','".$row["state"] ."','" .$row["lane"]."','".$row["lane2"]."','".$row["city"] ."','" .$row["code"] ."','" .$row["country"] ."','".$row["state"] ."','" .$row["lane"]."','" .$row["lane2"]."','" .$debtorcode."','" .$debtorcode."')";
+$sql_insert_account = "INSERT INTO custbranch (accountid,brname,industry,annualrevenue,phoneno,
+faxno,rating,email,website,employees,braddress3,braddress6,braddress5,braddress4
+,braddress1,braddress2,brpostaddr3,brpostaddr6,brpostaddr5,brpostaddr4,brpostaddr1,
+brpostaddr2,branchcode, debtorno,salesman) VALUES
+ (".$crmid.",'".$accountname ."','".$row["industry"] ."','" .$row["annualrevenue"] ."','" .$row["phone"] ."
+','".$row["fax"] ."','" .$row["rating"] ."','" .$row["email"] ."','" .$row["website"] ."','" .$row["noofemployees"] ."','".$row["city"] ."',
+'" .$row["code"] ."','" .$row["country"] ."',
+'".$row["state"] ."','" .$row["lane"]."','".$row["lane2"]."'
+,'".$row["city"] ."','" .$row["code"] ."','" .$row["country"] ."',
+'".$row["state"] ."','" .$row["lane"]."','" .$row["lane2"]."',
+'" .$debtorcode."','" .$debtorcode."','$salesmanid')";
 
 
 $adb->query($sql_insert_account);

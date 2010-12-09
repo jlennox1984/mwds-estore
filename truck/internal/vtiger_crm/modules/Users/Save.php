@@ -98,9 +98,24 @@ else {
 	}
 	else {	
 		$focus->save("Users");
+
+		global $vtlog;
+		$userfname=$_REQUEST['first_name'];
+		$userlname=$_REQUEST['last_name'];
+		$username="$userlname ,$userfname";
+		
+		$vtlog->logthis("User Real name: $username",'debug');
 //		include('modules/Calendar/user_ins.php');
 //		include("modules/Users/forum_register.php");	
 		$return_id = $focus->id;
+		//add saleman entriy in WEBERP
+		$salesmancode="S$return_id";
+		global $adb;
+		$sql="INSERT INTO salesman (salesmancode,salesmanname,userid)values
+		('$salesmancode','$username','$return_id')";
+		$adb->query($sql);
+		$vtlog->logthis("output of query eq $sql",'debug');
+
 	}
 }
 if(isset($focus->id) && $focus->id != '')
