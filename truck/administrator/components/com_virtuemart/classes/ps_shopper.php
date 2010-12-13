@@ -295,7 +295,7 @@ class ps_shopper {
 		else {$taxgroup=5;}
 
 
-  		$db->query("INSERT into debtorsmaster (debtorno, name, address1, address2, address3, address4, address5, address6, currcode, salestype, clientsince, lastpaiddate) VALUES ('WWW" .$debtorno . "', '" .$company . "', '" .$d["address_1"] . "', '" .$d["address_2"] . "', '" .$d["city"] . "', '" .$d["state"] . "', '" .$d["country"] . "', '" .$d["zip"] . "', 'CDN', 'DE', '" .$timestamp . "', '" .$timestamp . "')");		
+  		$db->query("INSERT into debtorsmaster (debtorno, name, address1, address2, address3, address4, address5, address6, currcode, salestype, clientsince, lastpaiddate,paymentterms) VALUES ('WWW" .$debtorno . "', '" .$company . "', '" .$d["address_1"] . "', '" .$d["address_2"] . "', '" .$d["city"] . "', '" .$d["state"] . "', '" .$d["country"] . "', '" .$d["zip"] . "', 'CDN', 'DE', '" .$timestamp . "', '" .$timestamp . "','7')");		
 		
 		
 		$db->query("INSERT into custbranch ( branchcode, debtorno, brname, braddress1, braddress2, braddress3, braddress4, braddress5, braddress6, phoneno, email, salesman, area, DefaultLocation, DefaultShipVia, taxgroupid, accountid, contactname, account_type, currcode, employees) VALUES ('WWW" .$accountid . "', 'WWW" .$debtorno . "', '" . $company . "', '" .$d["address_1"] . "', '" .$d["address_2"] . "', '" .$d["city"] . "', '" .$d["state"] . "', '" .$d["country"] . "', '" .$d["zip"] . "', '" .$d["phone_1"] . "', '" .$d["email"] . "', 'SO1', 'DE', 'TOR', '1',  '" . $taxgroup . "', '" .$accountid . "', '" .$contactname . "', 'Retail', 'CDN', '" . $uid . "')");		
