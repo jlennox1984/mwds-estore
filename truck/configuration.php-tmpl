@@ -1,5 +1,5 @@
 <?php 
-$mosConfig_MetaAuthor = '1';
+	$mosConfig_MetaAuthor = '1';
 $mosConfig_MetaDesc = 'Joomla - the dynamic portal engine and content management system';
 $mosConfig_MetaKeys = 'Joomla, joomla';
 $mosConfig_MetaTitle = '1';
