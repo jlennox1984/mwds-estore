@@ -1,0 +1,24 @@
+#!/bin/sh
+#ESTORE ERP SETUP SCRIPT
+#BY J Moncrieff
+
+echo "#=======================================#"
+echo "#-----ESTORE ERP SETUP SCRIPT-----------#"
+echo "#=======================================#"
+echo "please enter yours database Name-->"
+read DBNAME
+echo "please enter your Database User Name-->
+read DBUSER
+echo "please enter your Database Password-->
+read DBPASS
+
+ if [$1==''] then
+	echo "Please enter your  path"
+	fi
+
+ 
+
+
+
+
+
