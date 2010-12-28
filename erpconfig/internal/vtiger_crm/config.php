@@ -31,7 +31,8 @@ $dbconfig['db_host_name'] = 	'localhost:3306';
 
 
 
-$dbconfig['db_type'] = 'mysqler_name'] =     'DBUSER';
+$dbconfig['db_type'] = 'mysql';
+$dbconfig['db_user_name']=		'DBUSER';
 $dbconfig['db_password'] =              'DBPASS';
 $dbconfig['db_name'] =                  'DBNAME';
 
