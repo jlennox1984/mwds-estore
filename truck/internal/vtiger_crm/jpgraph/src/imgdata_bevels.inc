@@ -4,21 +4,20 @@
 // Description:	Base64 encoded images for round bevels
 // Created: 	2003-03-20
 // Author:	Johan Persson (johanp@aditus.nu)
-// Ver:		$Id: imgdata_bevels.inc,v 1.3 2004/10/06 09:02:03 jack Exp $
+// Ver:		$Id: imgdata_bevels.inc 20 2005-05-30 20:34:41Z ljp $
 //
-// License:	This code is released under QPL 1.0 
-// Copyright (C) 2003 Johan Persson 
+// Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 
 class ImgData_Bevels extends ImgData {
-    var $name = 'Round Bevels';
-    var $an = array(MARK_IMG_BEVEL => 'imgdata');
+    protected $name = 'Round Bevels';
+    protected $an = array(MARK_IMG_BEVEL => 'imgdata');
     
-    var $colors = array('green','purple','orange','red','yellow');
-    var $index  = array('green'=>1,'purple'=>4,'orange'=>2,'red'=>0,'yellow'=>3);
-    var $maxidx = 4 ;
+    protected $colors = array('green','purple','orange','red','yellow');
+    protected $index  = array('green'=>1,'purple'=>4,'orange'=>2,'red'=>0,'yellow'=>3);
+    protected $maxidx = 4 ;
 
-    var $imgdata ;
+    protected $imgdata ;
 
     function ImgData_Bevels() {
 //==========================================================

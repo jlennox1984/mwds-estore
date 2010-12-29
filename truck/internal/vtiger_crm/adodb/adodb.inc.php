@@ -1218,6 +1218,7 @@
 		if (!is_numeric($secs2cache)) {
 			$first2cols = $force_array;
 			$force_array = $inputarr;
+
 		}
 		$rs =& $this->CacheExecute($secs2cache, $sql, $inputarr);
 		if (!$rs) {
@@ -2231,15 +2232,28 @@
 			return  "'".str_replace("'",$this->replaceQuote,$s)."'";
 		}
 		
-		// undo magic quotes for "
+		// undo magic quotes for 
 		$s = str_replace('\\"','"',$s);
-		
+				
+		//	 if ($this->replaceQuote == "\\'") // ' already quoted, no need to change anything 
+		if(1) //JEH 
+		return "'$s'"; 
+		else {// change \' to '' for sybase/mssql 
+		$s = str_replace('\\\\','\\',$s); 
+		return "'".str_replace("\\'",$this->replaceQuote,$s)."'"; 
+		}					
+						 
+		/** jeh php5 fix				
 		if ($this->replaceQuote == "\\'")  // ' already quoted, no need to change anything
 			return "'$s'";
+			
+		
 		else {// change \' to '' for sybase/mssql
 			$s = str_replace('\\\\','\\',$s);
 			return "'".str_replace("\\'",$this->replaceQuote,$s)."'";
+			
 		}
+	  **/
 	}
 	
 	
@@ -2250,6 +2264,7 @@
 	*
 	* See readme.htm#ex8 for an example of usage.
 	*
+
 	* @param sql
 	* @param nrows		is the number of rows per page to get
 	* @param page		is the page number to get (1-based)

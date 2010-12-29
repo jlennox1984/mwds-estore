@@ -4,10 +4,9 @@
 // Description:	Log scale plot extension for JpGraph
 // Created: 	2001-01-08
 // Author:	Johan Persson (johanp@aditus.nu)
-// Ver:		$Id: jpgraph_log.php,v 1.3 2004/10/06 09:02:04 jack Exp $
+// Ver:		$Id: jpgraph_log.php 480 2006-02-04 12:17:57Z ljp $
 //
-// License:	This code is released under QPL
-// Copyright (C) 2001,2002 Johan Persson
+// Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 */
 
@@ -37,11 +36,13 @@ class LogScale extends LinearScale {
     function Translate($a) {
 	if( !is_numeric($a) ) {
 	    if( $a != '' && $a != '-' && $a != 'x' ) 
-		JpGraphError::Raise('Your data contains non-numeric values.');
+		JpGraphError::RaiseL(11001);
+//('Your data contains non-numeric values.');
 	    return 1;
 	}
 	if( $a < 0 ) {
-	    JpGraphError::Raise("Negative data values can not be used in a log scale.");
+	    JpGraphError::RaiseL(11002);
+//("Negative data values can not be used in a log scale.");
 	    exit(1);
 	}
 	if( $a==0 ) $a=1;
@@ -54,7 +55,8 @@ class LogScale extends LinearScale {
     function RelTranslate($a) {
 	if( !is_numeric($a) ) {
 	    if( $a != '' && $a != '-' && $a != 'x' ) 
-		JpGraphError::Raise('Your data contains non-numeric values.');
+		JpGraphError::RaiseL(11001);
+//('Your data contains non-numeric values.');
 	    return 1;
 	}
 	if( $a==0 ) $a=1;
@@ -82,11 +84,12 @@ class LogScale extends LinearScale {
     // Note that for log autoscale the "maxstep" the fourth argument
     // isn't used. This is just included to give the method the same
     // signature as the linear counterpart.
-    function AutoScale(&$img,$min,$max,$dummy) {
+    function AutoScale($img,$min,$max,$maxsteps,$majend=true) {
 	if( $min==0 ) $min=1;
 	
 	if( $max <= 0 ) {
-	    JpGraphError::Raise('Scale error for logarithmic scale. You have a problem with your data values. The max value must be greater than 0. It is mathematically impossible to have 0 in a logarithmic scale.');
+	    JpGraphError::RaiseL(11004);
+//('Scale error for logarithmic scale. You have a problem with your data values. The max value must be greater than 0. It is mathematically impossible to have 0 in a logarithmic scale.');
 	}
 	$smin = floor(log10($min));
 	$smax = ceil(log10($max));
@@ -101,7 +104,7 @@ class LogScale extends LinearScale {
 // Description: 
 //===================================================
 class LogTicks extends Ticks{
-    var $label_logtype=LOGLABELS_MAGNITUDE;
+    private $label_logtype=LOGLABELS_MAGNITUDE;
 //---------------
 // CONSTRUCTOR
     function LogTicks() {
@@ -124,7 +127,8 @@ class LogTicks extends Ticks{
     }
 
     function SetTextLabelStart($aStart) {
-	JpGraphError::Raise('Specifying tick interval for a logarithmic scale is undefined. Remove any calls to SetTextLabelStart() or SetTextTickInterval() on the logarithmic scale.');
+	JpGraphError::RaiseL(11005);
+//('Specifying tick interval for a logarithmic scale is undefined. Remove any calls to SetTextLabelStart() or SetTextTickInterval() on the logarithmic scale.');
     }
 
     function SetXLabelOffset($dummy) {
@@ -135,7 +139,7 @@ class LogTicks extends Ticks{
     // position in the image is specified in pos, i.e. for an x-axis
     // it specifies the absolute y-coord and for Y-ticks it specified the
     // absolute x-position.
-    function Stroke(&$img,&$scale,$pos) {
+    function Stroke($img,$scale,$pos) {
 	$start = $scale->GetMinVal();
 	$limit = $scale->GetMaxVal();
 	$nextMajor = 10*$start;
@@ -171,13 +175,15 @@ class LogTicks extends Ticks{
 		$this->ticks_pos[]=$ys;
 		$this->ticklabels_pos[]=$ys;
 		if( $count % 10 == 0 ) {
-		    if( $this->majcolor!="" ) {
-			$img->PushColor($this->majcolor);
-			$img->Line($pos,$ys,$a2,$ys);
-			$img->PopColor();
+		    if( !$this->supress_tickmarks ) {
+			if( $this->majcolor!="" ) {
+			    $img->PushColor($this->majcolor);
+			    $img->Line($pos,$ys,$a2,$ys);
+			    $img->PopColor();
+			}
+			else
+			    $img->Line($pos,$ys,$a2,$ys);
 		    }
-		    else
-			$img->Line($pos,$ys,$a2,$ys);
 
 		    $this->maj_ticks_pos[$i]=$ys;
 		    $this->maj_ticklabels_pos[$i]=$ys;
@@ -196,9 +202,11 @@ class LogTicks extends Ticks{
 		    $count=1; 				
 		}
 		else {
-		    if( $this->mincolor!="" ) $img->PushColor($this->mincolor);
-		    $img->Line($pos,$ys,$a,$ys);		
-		    if( $this->mincolor!="" ) $img->PopCOlor();
+		    if( !$this->supress_tickmarks && !$this->supress_minor_tickmarks) {
+			if( $this->mincolor!="" ) $img->PushColor($this->mincolor);
+			$img->Line($pos,$ys,$a,$ys);		
+			if( $this->mincolor!="" ) $img->PopColor();
+		    }
 		}
 	    }		
 	}
@@ -226,7 +234,9 @@ class LogTicks extends Ticks{
 		$this->ticks_pos[]=$xs;
 		$this->ticklabels_pos[]=$xs;
 		if( $count % 10 == 0 ) {
-		    $img->Line($xs,$pos,$xs,$a2);
+		    if( !$this->supress_tickmarks ) {
+			$img->Line($xs,$pos,$xs,$a2);
+		    }
 		    $this->maj_ticks_pos[$i]=$xs;
 		    $this->maj_ticklabels_pos[$i]=$xs;
 
@@ -243,8 +253,11 @@ class LogTicks extends Ticks{
 		    $step *= 10;	
 		    $count=1; 				
 		}
-		else
-		    $img->Line($xs,$pos,$xs,$a);		
+		else {
+		    if( !$this->supress_tickmarks && !$this->supress_minor_tickmarks) {
+			$img->Line($xs,$pos,$xs,$a);		
+		    }
+		}
 	    }		
 	}
 	return true;

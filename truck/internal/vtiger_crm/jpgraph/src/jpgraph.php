@@ -3248,6 +3248,7 @@ class Grid {
     function SetColor($aMajColor,$aMinColor=false) {
 	$this->grid_color=$aMajColor;
 	if( $aMinColor === false ) 
+
 	    $aMinColor = $aMajColor ;
 	$this->grid_mincolor = $aMinColor;
     }
@@ -3887,6 +3888,7 @@ class Ticks {
     }
 	
     // Set the distance between major and minor tick marks
+
     function Set($aMaj,$aMin) {
 	// "Virtual method"
 	// Should be implemented by the concrete subclass

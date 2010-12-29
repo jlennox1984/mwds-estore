@@ -4,10 +4,9 @@
 // Description:	Canvas drawing extension for JpGraph
 // Created: 	2001-01-08
 // Author:	Johan Persson (johanp@aditus.nu)
-// Ver:		$Id: jpgraph_canvas.php,v 1.3 2004/10/06 09:02:03 jack Exp $
+// Ver:		$Id: jpgraph_canvas.php 548 2006-02-18 07:29:57Z ljp $
 //
-// License:	This code is released under QPL
-// Copyright (C) 2001,2002 Johan Persson
+// Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 */
 
@@ -36,15 +35,20 @@ class CanvasGraph extends Graph {
     // Method description
     function Stroke($aStrokeFileName="") {
 	if( $this->texts != null ) {
-	    for($i=0; $i<count($this->texts); ++$i) {
+	    for($i=0; $i < count($this->texts); ++$i) {
 		$this->texts[$i]->Stroke($this->img);
 	    }
-	}				
+	}		
+	if( $this->iTables !== null ) {
+	    for($i=0; $i < count($this->iTables); ++$i) {
+		$this->iTables[$i]->Stroke($this->img);
+	    }   
+	}
 	$this->StrokeTitles();
 
 	// Should we do any final image transformation
 	if( $this->iImgTrans ) {
-	    if( !class_exists('ImgTrans') ) {
+	    if( !class_exists('ImgTrans',false) ) {
 		require_once('jpgraph_imgtrans.php');
 	    }
 	    
@@ -64,8 +68,8 @@ class CanvasGraph extends Graph {
 	}
 	else {
 	    // Finally stream the generated picture					
-		$this->cache->PutAndStream($this->img,$this->cache_name,$this->inline,
-					   $aStrokeFileName);		
+	    $this->cache->PutAndStream($this->img,$this->cache_name,$this->inline,$aStrokeFileName);
+	    return true;		
 	}
     }
 } // Class

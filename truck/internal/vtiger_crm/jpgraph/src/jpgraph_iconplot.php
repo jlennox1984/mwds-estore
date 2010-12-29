@@ -4,10 +4,9 @@
 // Description:	PHP4 Graph Plotting library. Extension module.
 // Created: 	2004-02-18
 // Author:	Johan Persson (johanp@aditus.nu)
-// Ver:		$Id: jpgraph_iconplot.php,v 1.3 2004/10/06 09:02:04 jack Exp $
+// Ver:		$Id: jpgraph_iconplot.php 548 2006-02-18 07:29:57Z ljp $
 //
-// License:	This code is released under QPL 1.0
-// Copyright (C) 2001,2002,2003,2004 Johan Persson
+// Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 
 
@@ -17,12 +16,15 @@
 // to the graph
 //===================================================
 class IconPlot {
-    var $iHorAnchor='left',$iVertAnchor='top';
-    var $iX=0,$iY=0;
-    var $iFile='';
-    var $iScale=1.0,$iMix=100;
-    var $iAnchors = array('left','right','top','bottom','center');
-    var $iCountryFlag='',$iCountryStdSize=3;
+    private $iHorAnchor='left',$iVertAnchor='top';
+    private $iX=0,$iY=0;
+    private $iFile='';
+    private $iScale=1.0,$iMix=100;
+    private $iAnchors = array('left','right','top','bottom','center');
+    private $iCountryFlag='',$iCountryStdSize=3;
+    private $iScalePosY=null,$iScalePosX=null;
+    private $iImgString='';
+
 
     function IconPlot($aFile="",$aX=0,$aY=0,$aScale=1.0,$aMix=100) {
 	$this->iFile = $aFile;
@@ -30,7 +32,7 @@ class IconPlot {
 	$this->iY=$aY;
 	$this->iScale= $aScale;
 	if( $aMix < 0 || $aMix > 100 ) {
-	    JpGraphError::Raise('Mix value for icon must be between 0 and 100.');
+	    JpGraphError::RaiseL(8001); //('Mix value for icon must be between 0 and 100.');
 	}
 	$this->iMix = $aMix ;
     }
@@ -41,7 +43,7 @@ class IconPlot {
 	$this->iY=$aY;
 	$this->iScale= $aScale;
 	if( $aMix < 0 || $aMix > 100 ) {
-	    JpGraphError::Raise('Mix value for icon must be between 0 and 100.');
+	    JpGraphError::RaiseL(8001);//'Mix value for icon must be between 0 and 100.');
 	}
 	$this->iMix = $aMix;
 	$this->iCountryStdSize = $aStdSize;
@@ -52,13 +54,22 @@ class IconPlot {
 	$this->iY=$aY;
     }
 
+    function CreateFromString($aStr) {
+	$this->iImgString = $aStr;
+    }
+
+    function SetScalePos($aX,$aY) {
+	$this->iScalePosX = $aX;
+	$this->iScalePosY = $aY;
+    }
+
     function SetScale($aScale) {
 	$this->iScale = $aScale;
     }
 
     function SetMix($aMix) {
 	if( $aMix < 0 || $aMix > 100 ) {
-	    JpGraphError::Raise('Mix value for icon must be between 0 and 100.');
+	    JpGraphError::RaiseL(8001);//('Mix value for icon must be between 0 and 100.');
 	}
 	$this->iMix = $aMix ;
     }
@@ -66,26 +77,92 @@ class IconPlot {
     function SetAnchor($aXAnchor='left',$aYAnchor='center') {
 	if( !in_array($aXAnchor,$this->iAnchors) ||
 	    !in_array($aYAnchor,$this->iAnchors) ) {
-	    JpGraphError::Raise("Anchor position for icons must be one of 'top', 'bottom', 'left', 'right' or 'center'");
+	    JpGraphError::RaiseL(8002);//("Anchor position for icons must be one of 'top', 'bottom', 'left', 'right' or 'center'");
 	}
 	$this->iHorAnchor=$aXAnchor;
 	$this->iVertAnchor=$aYAnchor;
     }
     
-    function Stroke($aImg) {
+    function PreStrokeAdjust($aGraph) {
+	// Nothing to do ...
+    }
+
+    function DoLegend($aGraph) {
+	// Nothing to do ...
+    }
+
+    function Max() {
+	return array(false,false);
+    }
+
+
+    // The next four function are framework function tht gets called
+    // from Gantt and is not menaiungfull in the context of Icons but
+    // they must be implemented to avoid errors.
+    function GetMaxDate() { return false;   }
+    function GetMinDate() { return false;   }
+    function GetLineNbr() { return 0;   }
+    function GetAbsHeight() {return 0;  }
+
+
+    function Min() {
+	return array(false,false);
+    }
+
+    function StrokeMargin(&$aImg) {
+	return true;
+    }
+
+    function Stroke($aImg,$axscale,$ayscale) {
+	$this->StrokeWithScale($aImg,$axscale,$ayscale);
+    }
+
+    function StrokeWithScale($aImg,$axscale,$ayscale) {
+	if( $this->iScalePosX === null ||
+	    $this->iScalePosY === null ) {
+	    $this->_Stroke($aImg);
+	}
+	else {
+	    $this->_Stroke($aImg,
+			  round($axscale->Translate($this->iScalePosX)),
+			  round($ayscale->Translate($this->iScalePosY)));
+	}
+    }
+
+    function GetWidthHeight() {
+	$dummy=0;
+	return $this->_Stroke($dummy,null,null,true);
+    }
+
+    function _Stroke($aImg,$x=null,$y=null,$aReturnWidthHeight=false) {
 	if( $this->iFile != '' && $this->iCountryFlag != '' ) {
-	    JpGraphError::Raise('It is not possible to specify both an image file and a country flag for the same icon.');	
+	    JpGraphError::RaiseL(8003);//('It is not possible to specify both an image file and a country flag for the same icon.');	
 	}
 	if( $this->iFile != '' ) {
 	    $gdimg = Graph::LoadBkgImage('',$this->iFile);
 	}
+	elseif( $this->iImgString != '') {
+	    $gdimg = Image::CreateFromString($this->iImgString);
+	}
+
 	else {
-	    if( ! class_exists('FlagImages') ) {
-		JpGraphError::Raise('In order to use Country flags as icons you must include the "jpgraph_flags.php" file.');
+	    if( ! class_exists('FlagImages',false) ) {
+		JpGraphError::RaiseL(8004);//('In order to use Country flags as icons you must include the "jpgraph_flags.php" file.');
 	    }
 	    $fobj = new FlagImages($this->iCountryStdSize);
 	    $dummy='';
 	    $gdimg = $fobj->GetImgByName($this->iCountryFlag,$dummy);
+	}
+
+	$iconw = imagesx($gdimg);
+	$iconh = imagesy($gdimg);
+	
+	if( $aReturnWidthHeight ) {
+	    return array(round($iconw*$this->iScale),round($iconh*$this->iScale));
+	}
+
+	if( $x !== null && $y !== null ) {
+	    $this->iX = $x; $this->iY = $y;
 	}
 	if( $this->iX >= 0  && $this->iX <= 1.0 ) {
 	    $w = imagesx($aImg->img);
@@ -95,9 +172,7 @@ class IconPlot {
 	    $h = imagesy($aImg->img);
 	    $this->iY = round($h*$this->iY);
 	}
-	$iconw = imagesx($gdimg);
-	$iconh = imagesy($gdimg);
-	
+
 	if( $this->iHorAnchor == 'center' ) 
 	    $this->iX -= round($iconw*$this->iScale/2);
 	if( $this->iHorAnchor == 'right' ) 

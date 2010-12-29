@@ -13,7 +13,7 @@
  * Contributor(s): ______________________________________.
  ********************************************************************************/
 /*********************************************************************************
- * $Header: /cvsroot/vtigercrm/vtiger_crm/modules/Dashboard/Chart_outcome_by_month.php,v 1.17 2005/05/03 13:18:54 saraj Exp $
+ * $Header: /cvsroot/vtigercrm/vtiger_crm/modules/Dashboard/Chart_outcome_by_month.php,v 1.17.2.1 2005/08/30 14:24:17 cooljaguar Exp $
  * Description:  returns HTML for client-side image map.
  ********************************************************************************/
 
@@ -101,17 +101,18 @@ $log->debug($ids);
 
 $cache_file_name = $id_hash."_outcome_by_month_".$current_language."_".crc32($date_start.$date_end).".png";
 $log->debug("cache file name is: $cache_file_name");
-
-if (substr(phpversion(), 0, 1) == "5") { // php5 }
-	echo "<em>Charts not supported in PHP 5.</em>";
-}
-else {
+//compat php5
+//if (substr(phpversion(), 0, 1) == "5") { // php5 }
+//	echo "<em>Charts not supported in PHP 5.</em>";
+//}
+//else {
 $draw_this = new jpgraph();
 echo $draw_this->outcome_by_month($date_start, $date_end, $ids, $tmp_dir.$cache_file_name, $refresh);
 echo "<P><font size='1'><em>".$current_module_strings['LBL_MONTH_BY_OUTCOME_DESC']."</em></font></P>";
 if (isset($_REQUEST['obm_edit']) && $_REQUEST['obm_edit'] == 'true') {
 	$cal_lang = "en";
 	$cal_dateformat = parse_calendardate($app_strings['NTC_DATE_FORMAT']);
+	$cal_dateformat = '%Y-%m-%d'; // fix providedd by Jlee for date bug in Dashboard
 
 ?>
 <link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
@@ -162,4 +163,5 @@ else {
 </FONT></div>
 <?php } 
 echo get_validate_chart_js();
-}?>
+//}
+?>

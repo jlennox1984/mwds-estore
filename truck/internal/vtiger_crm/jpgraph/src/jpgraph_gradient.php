@@ -4,10 +4,9 @@
 // Description:	Create a color gradient
 // Created: 	2003-02-01
 // Author:	Johan Persson (johanp@aditus.nu)
-// Ver:		$Id: jpgraph_gradient.php,v 1.3 2004/10/06 09:02:04 jack Exp $
+// Ver:		$Id: jpgraph_gradient.php 502 2006-02-04 12:46:10Z ljp $
 //
-// License:	This code is released under QPL
-// Copyright (C) 2003 Johan Persson
+// Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 */
 
@@ -31,8 +30,7 @@ DEFINE("GRAD_RAISED_PANEL",10);
 // considered a "friend" class of Class Image.
 //===================================================
 class Gradient {
-    var $img=null;
-    var $numcolors=100;
+    private $img=null, $numcolors=100;
 //---------------
 // CONSTRUCTOR
     function Gradient(&$img) {
@@ -271,7 +269,8 @@ class Gradient {
 		break;
 
 	    default:
-		JpGraphError::Raise("Unknown gradient style (=$style).");
+		JpGraphError::RaiseL(7001,$style);
+//("Unknown gradient style (=$style).");
 		break;
 	}
     }

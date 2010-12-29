@@ -4,10 +4,9 @@
 // Description:	Extension for JpGraph to do some simple img transformations
 // Created: 	2003-09-06
 // Author:	Johan Persson (johanp@aditus.nu)
-// Ver:		$Id: jpgraph_imgtrans.php,v 1.3 2004/10/06 09:02:04 jack Exp $
+// Ver:		$Id: jpgraph_imgtrans.php 478 2006-02-04 12:17:06Z ljp $
 //
-// License:	This code is released under QPL 1.0 
-// Copyright (C) 2003 Johan Persson 
+// Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 
 //------------------------------------------------------------------------
@@ -15,7 +14,7 @@
 // Perform some simple image transformations. 
 //------------------------------------------------------------------------
 class ImgTrans {
-    var $gdImg=null;
+    private $gdImg=null;
 
     function ImgTrans($aGdImg) {
 	// Constructor
@@ -31,7 +30,8 @@ class ImgTrans {
 
 	// Parameter check
 	if( $aHorizonPos < 0 || $aHorizonPos > 1.0 ) {
-	    JpGraphError::Raise("Value for image transformation out of bounds.\nVanishing point on horizon must be specified as a value between 0 and 1.");
+	    JpGraphError::RaiseL(9001);
+//("Value for image transformation out of bounds.\nVanishing point on horizon must be specified as a value between 0 and 1.");
 	}
 
 	$w = imagesx($aGdImg);

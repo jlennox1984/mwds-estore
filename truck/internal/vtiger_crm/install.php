@@ -17,9 +17,10 @@
  * Description:  Starts the installation process.
  ********************************************************************************/
 
-if (substr(phpversion(), 0, 1) == "5") {
-	ini_set("zend.ze1_compatibility_mode", "1");
-}
+//This code block is disabled to fix the PHP5.x problem xedeon
+//if (substr(phpversion(), 0, 1) == "5") {
+//	ini_set("zend.ze1_compatibility_mode", "1");
+//}
 
  function stripslashes_checkstrings($value){
  	if(is_string($value)){

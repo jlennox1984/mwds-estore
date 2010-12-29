@@ -4,22 +4,21 @@
 // Description:	Base64 encoded images for pushpins
 // Created: 	2003-03-20
 // Author:	Johan Persson (johanp@aditus.nu)
-// Ver:		$Id: imgdata_pushpins.inc,v 1.3 2004/10/06 09:02:03 jack Exp $
+// Ver:		$Id: imgdata_pushpins.inc 20 2005-05-30 20:34:41Z ljp $
 //
-// License:	This code is released under QPL 1.0 
-// Copyright (C) 2003 Johan Persson 
+// Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 
 class ImgData_PushPins extends ImgData {
-    var $name = 'Push pins';
-    var $an = array(MARK_IMG_PUSHPIN => 'imgdata_small',
+    protected $name = 'Push pins';
+    protected $an = array(MARK_IMG_PUSHPIN => 'imgdata_small',
 		    MARK_IMG_SPUSHPIN => 'imgdata_small',
 		    MARK_IMG_LPUSHPIN => 'imgdata_large');
 
-    var $colors = array('blue','green','orange','pink','red');
-    var $index  = array('red' => 0, 'orange' => 1, 'pink' => 2, 'blue' => 3, 'green' => 4 ) ;
-    var $maxidx = 4 ;
-    var $imgdata_large, $imgdata_small ;
+    protected $colors = array('blue','green','orange','pink','red');
+    protected $index  = array('red' => 0, 'orange' => 1, 'pink' => 2, 'blue' => 3, 'green' => 4 ) ;
+    protected $maxidx = 4 ;
+    protected $imgdata_large, $imgdata_small ;
 
     function ImgData_PushPins() {
 
