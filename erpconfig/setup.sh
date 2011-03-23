@@ -72,8 +72,9 @@ read SURL
 jomsetup
 erpsetup
 vtsetup
+dbsetup
 infodisplay
-	
+
 	
 }
 infodisplay()
