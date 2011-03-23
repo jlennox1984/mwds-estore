@@ -39,6 +39,10 @@ vtsetup()
 
 }
 
+dbsetup()
+{
+mysql -U$DBUSER -P$DBPASS $DBNAME <../sql/ERP_MWDS.sql
+}
 
 init()
 {
