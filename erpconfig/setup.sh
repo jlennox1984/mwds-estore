@@ -41,7 +41,8 @@ vtsetup()
 
 dbsetup()
 {
-mysql -U$DBUSER -P$DBPASS $DBNAME <../sql/ERP_MWDS.sql
+
+echo " Please excute this command  to init the database mysql -u -p$DBPASS $DBNAME < $PWD/../sql/ERP_MWDS.sql"
 }
 
 init()
