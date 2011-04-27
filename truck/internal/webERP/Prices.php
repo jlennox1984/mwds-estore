@@ -84,11 +84,12 @@ if (isset($_POST['submit'])) {
 	} elseif ($InputError !=1) {
 
 	/*Selected price is null cos no item selected on first time round so must be adding a	record must be submitting new entries in the new price form */
-		$sql1="select product_id FROM jos_vm_product where product_sku='$Item' ";
+		$sql1="select product_id,product_publish FROM jos_vm_product where product_sku='$Item' ";
 			$result= DB_query($sql1,$db); 
                    $myrow1=DB_fetch_array($result);
                   $productid=$myrow1['product_id'];
-                    
+       			$product_pub=$myrow1['product_publish'];
+			            
 			$timestamp=time();
         
 			$sqlvm1 ="UPDATE jos_vm_product set
@@ -128,8 +129,13 @@ if (isset($_POST['submit'])) {
 					'" . $_POST['CurrAbrev'] . "',
 					'',
 					" . $_POST['Price'] . ")";
-
+						$result = DB_query($sql,$db, $ErrMsg, $DbgMsg);
 		$msg =  _('The new price has been added') . '.';
+
+	//VTiger priceing///
+	  $NEWSQL="UPDATE stockmaster SET unit_price=   '". $_POST['Price'] ."' WHERE stockid=$productid";
+		$result = DB_query($NEWSQL,$db, $ErrMsg, $DbgMsg);
+	
 	}
 	//run the SQL from either of the above possibilites only if there were no input errors
 	if ($InputError !=1){
@@ -190,17 +196,15 @@ if (isset($_POST['submit'])) {
 
 //Always do this stuff
 if ($InputError ==0){
-	$sql = "SELECT currencies.currency,
+$sql = "SELECT currencies.currency,
 	        	salestypes.sales_type,
 			prices.price,
 			prices.stockid,
 			prices.typeabbrev,
-			prices.currabrev,
-			jos_vm_product.product_publish as online
+			prices.currabrev
 		FROM prices,
 			salestypes,
-			currencies,
-			jos_vm_product
+			currencies
 		WHERE prices.currabrev=currencies.currabrev
 		AND prices.typeabbrev = salestypes.typeabbrev
 		AND prices.stockid='$Item'
@@ -209,86 +213,66 @@ if ($InputError ==0){
 			prices.typeabbrev";
 
 	$result = DB_query($sql,$db);
-//	$sql1 ="SELECT product_publish as online from jos_vm_product where product_sku='$Item'";
-//$result1=DB_Query($sql1,$db);
-
-	echo '<CENTER><table>';
-	echo '<tr><td class="tableheader">' . _('Currency') .
-	     '</td><td class="tableheader">' . _('Sales Type') .
-			 '</td><td class="tableheader">' . _('Price') .
-//			 '</td><td class="tableheader">' . _('ONLINE') .
-		 '</td></tr>';
+	echo '<center>';
+	echo '<table>';
+	echo '<tr><th>' . _('Currency') .
+	     '</th><th>' . _('Sales Type') .
+			 '</th><th>' . _('Price') .
+			 '</th></tr>';
 
 	$k=0; //row colour counter
 
 	while ($myrow = DB_fetch_array($result)) {
 		if ($k==1){
-			echo '<tr bgcolor="#CCCCCC">';
+			echo '<tr class="EvenTableRows">';
 			$k=0;
 		} else {
-			echo '<tr bgcolor="#EEEEEE">';
+			echo '<tr class="OddTableRows">';
 			$k=1;
 		}
-//myrow 2
- //          $k=0; //row colour counter
-/*
-        while ($myrow1 = DB_fetch_array($result1)) {
-                if ($k==1){
-                        echo '<tr bgcolor="#CCCCCC">';
-                        $k=0;
-                } else {
-                        echo '<tr bgcolor="#EEEEEE">';
-                        $k=1;
-                }
 
 		/*Only allow access to modify prices if securiy token 5 is allowed */
 		if (in_array(5,$_SESSION['AllowedPageSecurityTokens'])) {
 
 			printf("<td>%s</td>
 			        <td>%s</td>
-				<td ALIGN=RIGHT>%0.2f</td>
-				<td><a href='Item=%s&TypeAbbrev=%s&CurrAbrev=%s&Price=%s&Edit=1'>" . _('Edit') . "</td>
+				<td align=right>%0.2f</td>
+				<td><a href='%s?%s&Item=%s&TypeAbbrev=%s&CurrAbrev=%s&Price=%s&Edit=1'>" . _('Edit') . "</td>
 				<td><a href='%s?%s&Item=%s&TypeAbbrev=%s&CurrAbrev=%s&delete=yes' onclick=\"return confirm('" . _('Are you sure you wish to delete this price?') . "');\">" . _('Delete') . '</td></tr>',
 				$myrow['currency'],
 				$myrow['sales_type'],
 				$myrow['price'],
-				$myrow['online'],
 				$_SERVER['PHP_SELF'],
 				SID,
 				$myrow['stockid'],
 				$myrow['typeabbrev'],
 				$myrow['currabrev'],
 				$myrow['price'],
-
 				$_SERVER['PHP_SELF'],
 				SID,
 				$myrow['stockid'],
 				$myrow['typeabbrev'],
-				$myrow['currabrev']
-			//$myrow['online']//
-                  );
+				$myrow['currabrev']);
 		} else {
 			printf("<td>%s</td>
 			        <td>%s</td>
-				<td ALIGN=RIGHT>%0.2f</td></tr>",
+				<td align=right>%0.2f</td></tr>",
 				$myrow['currency'],
 				$myrow['sales_type'],
-				$myrow['price']
-				//$myrow['online']
-);
+				$myrow['price']);
 		}
 
 	}
 	//END WHILE LIST LOOP
-	echo '</table></CENTER><p>';
+		echo '</table><p><hr>';
 
 	if (DB_num_rows($result) == 0) {
 		prnMsg(_('There are no prices set up for this part'),'warn');
 	}
 
-	if ($_GET['Edit']==1){
-		echo '<INPUT TYPE=HIDDEN NAME="OldTypeAbbrev" VALUE="' . $_GET['TypeAbbrev'] .'">';
-		echo '<INPUT TYPE=HIDDEN NAME="OldCurrAbrev" VALUE="' . $_GET['CurrAbrev'] . '">';
+	if (isset($_GET['Edit'])){
+		echo '<input type=hidden name="OldTypeAbbrev" VALUE="' . $_GET['TypeAbbrev'] .'">';
+		echo '<input type=hidden name="OldCurrAbrev" VALUE="' . $_GET['CurrAbrev'] . '">';
 		$_POST['CurrAbrev'] = $_GET['CurrAbrev'];
 		$_POST['TypeAbbrev'] = $_GET['TypeAbbrev'];
 		$_POST['Price'] = $_GET['Price'];
@@ -297,28 +281,28 @@ if ($InputError ==0){
 	$SQL = "SELECT currabrev, currency FROM currencies";
 	$result = DB_query($SQL,$db);
 
-	echo '<CENTER><TABLE><TR><TD>' . _('Currency') . ':</TD><TD><SELECT name="CurrAbrev">';
+	echo '<table><tr><td>' . _('Currency') . ':</td><td><select name="CurrAbrev">';
 	while ($myrow = DB_fetch_array($result)) {
 		if ($myrow['currabrev']==$_POST['CurrAbrev']) {
-			echo '<OPTION SELECTED VALUE="';
+			echo '<option selected VALUE="';
 		} else {
-			echo '<OPTION VALUE="';
+			echo '<option VALUE="';
 		}
 		echo $myrow['currabrev'] . '">' . $myrow['currency'];
 	} //end while loop
 
 	DB_free_result($result);
 
-	echo '</SELECT>	</TD></TR><TR><TD>' . _('Sales Type Price List') . ':</TD><TD><SELECT name="TypeAbbrev">';
+	echo '</select>	</td></tr><tr><td>' . _('Sales Type Price List') . ':</td><td><select name="TypeAbbrev">';
 
 	$SQL = "SELECT typeabbrev, sales_type FROM salestypes";
 	$result = DB_query($SQL,$db);
 
 	while ($myrow = DB_fetch_array($result)) {
 		if ($myrow['typeabbrev']==$_POST['TypeAbbrev']) {
-			echo '<OPTION SELECTED VALUE="';
+			echo '<option selected VALUE="';
 		} else {
-			echo '<OPTION VALUE="';
+			echo '<option VALUE="';
 		}
 		echo $myrow['typeabbrev'] . '">' . $myrow['sales_type'];
 
@@ -327,31 +311,49 @@ if ($InputError ==0){
 	DB_free_result($result);
 	?>
 
-	</SELECT>
-	</TD></TR>
+	</select>
+	</td></tr>
 
-	<TR><TD><?php echo _('Price'); ?>:</TD>
-	<TD>
-	<input type="Text" name="Price" SIZE=12 MAXLENGTH=11 value=<?php echo $_POST['Price'];?>>
-
-	</TD></TR>
-	 <TR> <TD> Online Shoping Cart</TD>
-	<TD>
+	<tr><td><?php echo _('Price'); ?>:</td>
+	<td>
+	<input type="Text" class=number name="Price" size=12 maxlength=11 value=
+	<?php if(isset($_POST['Price'])) {echo $_POST['Price'];}?>>
+	
+	</td></tr>
+	<TR> <TD> Online Shoping Cart</TD>
+        <TD>
+	
 	<SELECT NAME='pub'>
+      
+
 	<OPTION value='n'> NO</OPTION>
-	<OPTION value='Y'>YES</OPTION>
-	</SELECT>
-	</TD></TR>
+      <?php
+		//Jomvm check 
+		 $sql1="select product_publish FROM jos_vm_product where product_sku='$Item' ";
+                        $result= DB_query($sql1,$db);
+                 	  $myrow1=DB_fetch_array($result);
+                        $product_pub=$myrow1['product_publish'];
+ 
+		if($product_pub=='y'){
 
+			echo '<OPTION value="Y" selected >YES </OPTION>';
+		}else{ 
+			 echo '<OPTION value="Y" >YES </OPTION>';
+		}
 
-	</TABLE>
+		
+	?>
+	
+        </SELECT>
+        </TD></TR>
 
+	</table>
+	<div class="centre">
 	<input type="Submit" name="submit" value="<?php echo _('Enter') . '/' . _('Amend Price'); ?>">
-	</CENTER>
-
+	</div>
+	
 <?php
  }
-
-echo '</FORM>';
+echo '</form>';
 include('includes/footer.inc');
 ?>
