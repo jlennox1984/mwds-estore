@@ -14,10 +14,10 @@ echo "#=======================================#"
 echo "do you want to download  weberp to--> "$PWD"/mwds-estore yes/no"  
  read SELECTPATH
  case $SELECTPATH in
-	yes|YES|Y|y) exec mkdir $PWD/mwds-estore
+	yes|YES|Y|y) 
+	mkdir $PWD/mwds-estore
 	echo "created $PWD/mwds-estore"
 	SETPATH=$PWD/mwds-estore;;
-	
 	no|NO|n|N) 
 	echo "please enter your temp  path-->"
 	read SETPATH
@@ -39,7 +39,7 @@ install()
 	#mv webapp/*  $WEBPATH/
 	mv * $WEBPATH/ 
 	cd $WEBPATH/erpconfig
-	exec bash setup.sh $WEBPATH
+	exec bash setup.sh $WEBPATH/
 
 
 	 
