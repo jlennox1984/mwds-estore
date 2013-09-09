@@ -13540,3 +13540,8 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2013-09-08 21:44:34
+
+-- Rest Jommla Password see Issue #50
+
+UPDATE jos_users SET password='21232f297a57a5a743894a0e4a801fc3' where username='admin';
+UPDATE icm_users SET password='21232f297a57a5a743894a0e4a801fc3' where username='admin';
