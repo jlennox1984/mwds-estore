@@ -7,7 +7,7 @@ if [ $1 ]
  then
 
 	echo $1
- 	PATHSC=$1
+ 	PATHSC=$1/webapp
 else
  	echo "no path selected"
 	 echo "Please enter your  path->"
