@@ -1,14 +1,28 @@
-#!/bin/sh
+#!/bin/bash
 #ESTORE ERP SETUP SCRIPT
 #BY J Moncrieff
+ARGS=1
+E_BADARGS=85
+if [ $1 ]
+ then
 
+	echo $1
+ 	PATHSC=$1/webapp
+else
+ 	echo "no path selected"
+	 echo "Please enter your  path->"
+        read PATHSC
+
+
+fi
 
 jomsetup()
 {
-	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e "s|LIVESITE|$SITE|" configuration.php > $PATHSC/configuration.php
-
+	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|EMAIL_SITE|$EMAIL|" -e "s|LIVESITE|$SITE|" configuration.php > $PATHSC/configuration.php
 	sed -e "s|SERCURE_URL|$SURL|" administrator/components/com_virtuemart/virtuemart.cfg.php > $PATHSC/administrator/components/com_virtuemart/virtuemart.cfg.php
+	sed -e "s|DBUSER|$DBUSER|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|ABSPATH|$PATHSC|" -e "s|LIVESITE|$SITE|" internal/configuration.php.tmpl  > $PATHSC/internal/configuration.php
 }
+
 erpsetup()
 {
 #Create config file for erp
@@ -20,6 +34,8 @@ erpsetup()
 
 ##Create login page
 	sed -e "s|DBNAME|$DBNAME|" internal/webERP/includes/Login.php > $PATHSC/internal/webERP/includes/Login.php
+##Create estore.conf.php
+	sed  -e "s|LIVESITE|$SITE|" -e "s|ABSPATH|$PATHSC|"  internal/webERP/estore.conf.php > $PATHSC/internal/webERP/estore.conf.php
 #############################################################################################################
 
 
@@ -37,12 +53,20 @@ vtsetup()
 
 }
 
+dbsetup()
+{
+sed -e "s|LIVESITE|$SITE|" -e "s|LIVESITE1|$SITE|" sql/ERP_MWDS.sql > /tmp/ERP_MWDS.sql
+echo " Please excute this command  to init the database mysql -u$DBUSER -p$DBPASS $DBNAME < /tmp/ERP_MWDS.sql"
+}
 
 init()
 {
 echo "#=======================================#"
 echo "#-----ESTORE ERP SETUP SCRIPT-----------#"
 echo "#=======================================#"
+
+echo "Please enter you stores email"
+read EMAIL
 echo "please enter yours database Name-->"
 read DBNAME
 echo "please enter your Database User Name-->"
@@ -50,24 +74,19 @@ read DBUSER
 echo "please enter your Database Password-->"
 read DBPASS
 echo "Please Enter the name of the site"
-read $SITENAME
+read SITENAME
 
 echo "Please enter the URL To you site-->"
 read SITE
- if [-d $1]; then
-	$1=$PATHSC	
-	else
-	echo "Please enter your  path->"
-        read PATHSC
-
-	fi
 echo "Please enter Your Secure URL->"
 read SURL
+	echo $PATHSC
 jomsetup
 erpsetup
 vtsetup
+dbsetup
 infodisplay
-	
+
 	
 }
 infodisplay()

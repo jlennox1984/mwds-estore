@@ -38,7 +38,7 @@ install()
 	mkdir $WEBPATH	
 	#mv webapp/*  $WEBPATH/
 	mv * $WEBPATH/ 
-	cd $WEBPATH/erpconfig
+	cd $WEBPATH/install
 	exec bash setup.sh $WEBPATH/
 
 
