@@ -5,9 +5,9 @@
 
 jomsetup()
 {
-	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|'EMAIL_SITE|$EMAIL|" -e "s|LIVESITE|$SITE|" configuration.php > $PATHSC/configuration.php
+	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|EMAIL_SITE|$EMAIL|" -e "s|LIVESITE|$SITE|" configuration.php > $PATHSC/configuration.php
 	sed -e "s|SERCURE_URL|$SURL|" administrator/components/com_virtuemart/virtuemart.cfg.php > $PATHSC/administrator/components/com_virtuemart/virtuemart.cfg.php
-	sed -e "s|DBUSER|$DBUSER|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e"|ABSPATH|$PATHSC" -e "|LIVESITE|$PATHSC" internal/configuration.php.tmpl > $PATHSC/internal/ configuration.php
+	sed -e "s|DBUSER|$DBUSER|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|ABSPATH|$PATHSC|" -e "s|LIVESITE|$SITE|" internal/configuration.php.tmpl  > $PATHSC/internal/configuration.php
 }
 
 erpsetup()
@@ -42,7 +42,7 @@ vtsetup()
 
 dbsetup()
 {
-sed -e "s|LIVESITE|$SITE|" sql/ERP_MWDS.sql > /tmp/ERP_MWDS.sql
+sed -e "s|LIVESITE|$SITE|" -e "s|LIVESITE1|$SITE|" sql/ERP_MWDS.sql > /tmp/ERP_MWDS.sql
 echo " Please excute this command  to init the database mysql -u$DBUSER -p$DBPASS $DBNAME < /tmp/ERP_MWDS.sql"
 }
 
