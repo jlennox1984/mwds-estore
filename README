@@ -28,7 +28,7 @@ point you browser to the url you seleted in the install script.
  
 ###############################################################
 # STORE FONT IS the url you selected ie http://foobar/eshop   #
-# MANAGMENT SUITE http://foobar/eshop/internal		      #
+# MANAGMENT SUITE http://foobar/eshopi/webapp/internal	      #
 # USERNAME:admin					      #
 # Password:admin					      # 
 ###############################################################
