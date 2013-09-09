@@ -1,7 +1,20 @@
 #!/bin/sh
 #ESTORE ERP SETUP SCRIPT
 #BY J Moncrieff
+ARGS=1
+E_BADARGS=85
+if [ $1 ]
+ then
 
+	echo $1
+ 	PATHSC=$1
+else
+ 	echo "no path selected"
+	 echo "Please enter your  path->"
+        read PATHSC
+
+
+fi
 
 jomsetup()
 {
@@ -51,6 +64,7 @@ init()
 echo "#=======================================#"
 echo "#-----ESTORE ERP SETUP SCRIPT-----------#"
 echo "#=======================================#"
+
 echo "Please enter you stores email"
 read EMAIL
 echo "please enter yours database Name-->"
@@ -64,15 +78,9 @@ read SITENAME
 
 echo "Please enter the URL To you site-->"
 read SITE
- if [-d $1]; then
-	$1=$PATHSC	
-	else
-	echo "Please enter your  path->"
-        read PATHSC
-
-	fi
 echo "Please enter Your Secure URL->"
 read SURL
+	echo $PATHSC
 jomsetup
 erpsetup
 vtsetup
