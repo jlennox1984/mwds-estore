@@ -2,21 +2,21 @@
 class JConfig {
 	var $dbtype = 'mysql';
 	var $host = 'localhost';
-	var $user = 'root';
-	var $password = '5373988';
-	var $db = 'redriven_internal';
-	var $dbprefix = 'jos_';
+	var $user = 'DBUSER';
+	var $password = 'DBPASS';
+	var $db = 'DBNAME';
+	var $dbprefix = 'icm_';
 	var $ftp_host = '127.0.0.1';
 	var $ftp_port = '21';
 	var $ftp_user = '';
 	var $ftp_pass = '';
 	var $ftp_root = '';
 	var $ftp_enable = '0';
-	var $tmp_path = '/srv/www/htdocs/mobs/internal/tmp';
-	var $log_path = '/srv/www/htdocs/mobs/internal/logs';
+	var $tmp_path = '/ABSPATH/internal/tmp';
+	var $log_path = '/ABSPATH/mobs/internal/logs';
 	var $mailer = 'mail';
 	var $mailfrom = 'jmoncrieff@mahsie.com';
-	var $fromname = 'Mahsie OSS Demo';
+	var $fromname = 'Shop cart suite';
 	var $sendmail = '/usr/sbin/sendmail';
 	var $smtpauth = '0';
 	var $smtpuser = '';
@@ -32,7 +32,7 @@ class JConfig {
 	var $lifetime = '15';
 	var $offline = '0';
 	var $offline_message = 'This site is down for maintenance. Please check back again soon.';
-	var $sitename = 'Mahsie OSS Demo';
+	var $sitename = 'Shopping   Cart Management  suite';
 	var $list_limit = '20';
 	var $legacy = '0';
 	var $debug_db = '0';
@@ -56,8 +56,8 @@ class JConfig {
 	var $feed_limit = '10';
 	var $feed_summary = '0';
 	var $session_handler = 'none';
-	var $live_site = 'http://demo.mwds.ca/redriven/internal/';
-	var $absolute_path = "var/www/demo.mwds.ca/web/redriven/internal";
+	var $live_site = 'LIVESITE/internal/';
+	var $absolute_path = "ABSPATH/internal/";
 	var $db_prefix = 'jos_';
 }
 ?>
