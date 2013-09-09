@@ -7,13 +7,9 @@ jomsetup()
 {
 	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|'EMAIL_SITE|$EMAIL|" -e "s|LIVESITE|$SITE|" configuration.php > $PATHSC/configuration.php
 	sed -e "s|SERCURE_URL|$SURL|" administrator/components/com_virtuemart/virtuemart.cfg.php > $PATHSC/administrator/components/com_virtuemart/virtuemart.cfg.php
-
-sed -e "s|DBUSER|$DBUSER|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e"|ABSPATH|$PATHSC" -e "|LIVESITE|$PATHSC" internal/ configuration.php.tmpl > $PATHSC/internal/ configuration.php
+	sed -e "s|DBUSER|$DBUSER|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e"|ABSPATH|$PATHSC" -e "|LIVESITE|$PATHSC" internal/configuration.php.tmpl > $PATHSC/internal/ configuration.php
 }
-dbsetup()
-{
 
-}
 erpsetup()
 {
 #Create config file for erp
