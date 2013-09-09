@@ -16,8 +16,7 @@ echo "do you want to download  weberp to--> "$PWD"/mwds-estore yes/no"
  case $SELECTPATH in
 	yes|YES|Y|y) exec mkdir $PWD/mwds-estore
 	echo "created $PWD/mwds-estore"
-	SETPATH=$PWD/mwds-estore	
-	;;
+	SETPATH=$PWD/mwds-estore;;
 	
 	no|NO|n|N) 
 	echo "please enter your temp  path-->"
@@ -35,11 +34,10 @@ install()
 
 		
  cd $SETPATH
-	svn co http://devel2.mwds.ca/svn/eshop/ .
-	
+	git clone https://github.com/jmoncrieff/mwds-estore.git .	
 	mkdir $WEBPATH	
-	mv truck/*  $WEBPATH/
-	
+	#mv webapp/*  $WEBPATH/
+	mv * $WEBPATH/ 
 	cd erpconfig
 	exec sh setup.sh
 
