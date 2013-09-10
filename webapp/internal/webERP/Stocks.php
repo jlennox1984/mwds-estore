@@ -70,7 +70,7 @@ if (isset($_FILES['ItemPicture']) AND $_FILES['ItemPicture']['name'] !='') {
  	$UploadTheFile = 'Yes'; //Assume all is well to start off with
 	$filename = $_SESSION['part_pics_dir'] . '/' . $StockID . '.jpg';
 	//testing save routine
-	//$filename=  $absolpathestore_pics . '/' . $StockID . '.jpg';
+	$filename=  $absolpathestore_pics . '/' . $StockID . '.jpg';  //WORK AS OF SEPT 10 2013
 	$filename1 = '/' . $StockID . '.jpg';
 	$savefilename = 'test/product/' . $StockID . '.jpg';
 	$filename2 = '../vtiger_crm/test/product/' . $StockID . '.jpg';
@@ -97,12 +97,9 @@ if (isset($_FILES['ItemPicture']) AND $_FILES['ItemPicture']['name'] !='') {
 	
 	if ($UploadTheFile=='Yes'){
 		$result  =  move_uploaded_file($_FILES['ItemPicture']['tmp_name'], $filename);
-	        	$result  =  move_uploaded_file($filename, $filename3);
+	        	$result  =  move_uploaded_file($filename, $filename_parts);
 	//$result =   move_uploaded_file($_FILES['ItemPicture']['tmp_name'], $filename_parts);
-
-			copy($filename , $absolpathestore_pics .'/' . $StockID . '.jpg');
-
-				//copy($filename , $filename_parts . '/' . $filename1);
+		      
 		$result = move_uploaded_file($_FILES['ItemPicture']['tmp_name'], $filename2);
 		$message = ($result)?_('File url') ."<a href='". $filename ."'>" .  $filename . '</a>' : _('Something is wrong with uploading a file');
 		$message = ($result2)?_('File url') ."<a href='". $filename2 ."'>" .  $filename2 . '</a>' : _('Something is wrong with uploading a file');

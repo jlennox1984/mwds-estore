@@ -29,9 +29,10 @@ erpsetup()
 
 	sed -e "s|DBUSER|$DBUSER|" -e "s|DBPASS|$DBPASS|" internal/webERP/config.php > $PATHSC/internal/webERP/config.php
 
-#Create Company Profile
-	cp -r  $PATHSC/internal/webERP/companies/verp_demo/  $PATHSC/internal/webERP/companies/$DBNAME
 
+#Create Company Profile
+	cp -r  $PATHSC/internal/webERP/companies/mobs/  $PATHSC/internal/webERP/companies/$DBNAME
+	
 ##Create login page
 	sed -e "s|DBNAME|$DBNAME|" internal/webERP/includes/Login.php > $PATHSC/internal/webERP/includes/Login.php
 ##Create estore.conf.php
@@ -57,6 +58,26 @@ dbsetup()
 {
 sed -e "s|LIVESITE|$SITE|" -e "s|LIVESITE1|$SITE|" sql/ERP_MWDS.sql > /tmp/ERP_MWDS.sql
 echo " Please excute this command  to init the database mysql -u$DBUSER -p$DBPASS $DBNAME < /tmp/ERP_MWDS.sql"
+echo "DB USER=>"$DBUSER
+echo "DB Name=>"$DBNAME
+echo  "Createing DB................."
+cat <<EOF| mysql -u$DBUSER -p$DBPASS 
+                    CREATE DATABASE $DBNAME
+
+
+EOF
+
+echo  "Importing DATABASE"
+mysql -u$DBUSER -p$DBPASS $DBNAME < ./tmp/ERP_MWDS.sql
+
+echo "Configuring DB"
+
+cat <<EOF| mysql -u$DBUSER -p$DBPASS $DBNAME
+
+ UPDATE config SET confvalue='companies/$DBNAME/' WHERE confname='part_pics_dir'
+
+EOF
+
 }
 
 init()
