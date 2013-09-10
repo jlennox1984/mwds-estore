@@ -1,0 +1,37 @@
+
+
+	###################################################
+	# MWDS E SHOPPING CART				  #
+	#  Vitue mart integration with Vtiger and Weberp  #
+	# GPL (C) 2007-2013	       	      	  	  #
+	###################################################
+
+REQURIEMENTS
+0.Linux
+1. PHP5.x
+2.MYSQL5.x
+3. GIT
+
+INSTALL INSTRUCTIONS
+1. Login  your server
+2 Create a mysql database ie mysql -u<YOUR MYSQL USERNAME -p<YOUR MYSQL PASSWORD>
+  mysql> CREATE DATABASE eshop; #you datbase name is eshop 
+2. type git clone https://github/jmoncrieff/mwds-estore.git eshop
+   	cd eshop/install
+	./install.sh	
+	follow the script
+3. Run SQL DUMP
+    mysql -u<YOUR MYSQL USERNAME -p<YOUR MYSQL	PASSWORD>  eshop <sql/ERP_MWDS.sql
+
+4. test  shopping cart
+point you browser to the url you seleted in the install script.
+ 
+###############################################################
+# STORE FONT IS the url you selected ie http://foobar/eshop   #
+# MANAGMENT SUITE http://foobar/eshop/webapp/internal	      #
+# USERNAME:admin					      #
+# Password:admin					      # 
+###############################################################
+
+email me if you have questions
+jeffrey.moncriefff@gmail.com
