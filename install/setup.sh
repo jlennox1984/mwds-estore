@@ -18,7 +18,8 @@ fi
 
 jomsetup()
 {
-	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|EMAIL_SITE|$EMAIL|" -e "s|LIVESITE|$SITE|" configuration.php > $PATHSC/configuration.php
+	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|EMAIL_SITE|$EMAIL|"
+ -e "s|LIVESITE|$SITE/webapp/|" configuration.php > $PATHSC/configuration.php
 	sed -e "s|SERCURE_URL|$SURL|" administrator/components/com_virtuemart/virtuemart.cfg.php > $PATHSC/administrator/components/com_virtuemart/virtuemart.cfg.php
 	sed -e "s|DBUSER|$DBUSER|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|ABSPATH|$PATHSC|" -e "s|LIVESITE|$SITE|" internal/configuration.php.tmpl  > $PATHSC/internal/configuration.php
 }
