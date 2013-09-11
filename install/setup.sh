@@ -68,7 +68,7 @@ cat <<EOF| mysql -u$DBUSER -p$DBPASS
 EOF
 
 echo  "Importing DATABASE"
-mysql -u$DBUSER -p$DBPASS $DBNAME < ./tmp/ERP_MWDS.sql
+mysql -u$DBUSER -p$DBPASS $DBNAME < /tmp/ERP_MWDS.sql
 
 echo "Configuring DB"
 
