@@ -63,7 +63,6 @@ echo "Vtiger Setup Complete"
 dbsetup()
 {
 sed -e "s|LIVESITE|$SITE|" -e "s|LIVESITE1|$SITE|" sql/ERP_MWDS.sql > /tmp/ERP_MWDS.sql
-echo " Please excute this command  to init the database mysql -u$DBUSER -p$DBPASS $DBNAME < /tmp/ERP_MWDS.sql"
 echo "DB USER=>"$DBUSER
 echo "DB Name=>"$DBNAME
 echo  "Createing DB................."
