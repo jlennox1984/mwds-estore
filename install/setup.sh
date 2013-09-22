@@ -18,16 +18,19 @@ fi
 
 jomsetup()
 {
-	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|EMAIL_SITE|$EMAIL|"
- -e "s|LIVESITE|$SITE/webapp/|" configuration.php > $PATHSC/configuration.php
-	sed -e "s|SERCURE_URL|$SURL|" administrator/components/com_virtuemart/virtuemart.cfg.php > $PATHSC/administrator/components/com_virtuemart/virtuemart.cfg.php
+echo "Path->" $PATHSC
+echo "Jommla Setup"
+	sed -e "s|ABSPATH|$PATHSC|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|SITENAME|$SITENAME|" -e "s|DBUSER|$DBUSER|"  -e"s|EMAIL_SITE|$EMAIL|" -e "s|LIVESITE|$SITE|" configuration.php > $PATHSC/configuration.php
+	echo "Main configuration OK"
+	sed -e "s|SERCURE_URL|$SURL/webapp/|" administrator/components/com_virtuemart/virtuemart.cfg.php > $PATHSC/administrator/components/com_virtuemart/virtuemart.cfg.php
 	sed -e "s|DBUSER|$DBUSER|" -e "s|DBNAME|$DBNAME|" -e "s|DBPASS|$DBPASS|" -e "s|ABSPATH|$PATHSC|" -e "s|LIVESITE|$SITE|" internal/configuration.php.tmpl  > $PATHSC/internal/configuration.php
+echo "Joomla setup Complete"
 }
 
 erpsetup()
 {
 #Create config file for erp
-
+	echo "ERP Setup"
 	sed -e "s|DBUSER|$DBUSER|" -e "s|DBPASS|$DBPASS|" internal/webERP/config.php > $PATHSC/internal/webERP/config.php
 
 
@@ -39,19 +42,21 @@ erpsetup()
 ##Create estore.conf.php
 	sed  -e "s|LIVESITE|$SITE|" -e "s|ABSPATH|$PATHSC|"  internal/webERP/estore.conf.php > $PATHSC/internal/webERP/estore.conf.php
 #############################################################################################################
-
+echo "ERP Setup Complete"
 
 
 }
 
 vtsetup()
 {
-
+echo "Vtiger Setup"
 
 #Create Vtiger Config file
 
 
 	sed -e "s|DBUSER|$DBUSER|" -e "s|DBPASS|$DBPASS|" -e "s|DBNAME|$DBNAME|" -e "s|LIVESITE|$SITE/internal/vtiger_crm/|" internal/vtiger_crm/config.php > $PATHSC/internal/vtiger_crm/config.php
+
+echo "Vtiger Setup Complete"
 
 }
 
@@ -62,10 +67,8 @@ echo " Please excute this command  to init the database mysql -u$DBUSER -p$DBPAS
 echo "DB USER=>"$DBUSER
 echo "DB Name=>"$DBNAME
 echo  "Createing DB................."
-cat <<EOF| mysql -u$DBUSER -p$DBPASS 
+cat << EOF| mysql -u$DBUSER -p$DBPASS 
                     CREATE DATABASE $DBNAME
-
-
 EOF
 
 echo  "Importing DATABASE"
