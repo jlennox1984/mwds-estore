@@ -28,11 +28,10 @@ if (!isset($_GET['OrderNumber']) && !isset($_SESSION['ProcessingOrder'])) {
 	unset($_SESSION['Items']->LineItems);
 	unset ($_SESSION['Items']);
 
-	Session_register('Items');
-	Session_register('ProcessingOrder');
-	Session_register('Old_FreightCost');
-	Session_Register('CurrencyRate');
-	
+	$_SESSION['Items'];
+	$_SESSION['ProcessingOrder'];
+	$_SESSION['Old_FreightCost'];
+	$_SESSION['CurrencyRate'];
 	$_SESSION['ProcessingOrder']=$_GET['OrderNumber'];
 	$_SESSION['Items'] = new cart;
 

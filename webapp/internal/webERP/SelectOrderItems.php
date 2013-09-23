@@ -72,12 +72,12 @@ if (isset($_GET['ModifyOrderNumber'])
 		unset ($_SESSION['Items']);
 	}
 
-	Session_register('Items');
-	Session_register('RequireCustomerSelection');
-	Session_register('CreditAvailable');
-	Session_register('ExistingOrder');
-	Session_register('PrintedPackingSlip');
-	Session_register('DatePackingSlipPrinted');
+	$_SESSION['Items'];
+	$_SESSION['RequireCustomerSelection'];
+        $_SESSION['CreditAvailable'];
+	$_SESSION['ExistingOrder'];
+	$_SESSION['PrintedPackingSlip'];
+	S_SESSION['DatePackingSlipPrinted'];
 
 	$_SESSION['ExistingOrder']=$_GET['ModifyOrderNumber'];
 		$sotitle = ' SO' . $_SESSION['ExistingOrder'];
