@@ -516,7 +516,7 @@ class ps_checkout {
 	**                      checked
 	** returns:  Prints html radio element to standard out
 	***************************************************************************/
-	function ship_to_addresses_radio($user_id, $name, $value) {
+function ship_to_addresses_radio($user_id, $name, $value) {
 		global $sess,$VM_LANG;
 
 		$db = new ps_DB;
@@ -871,6 +871,23 @@ Order Total: '.$order_total.'
 
 		return($accountid);
 	}
+	/*******************************************************************
+	 ** name: get_location($state)
+	 ********************************************************************/
+
+	function get_location($state){
+	  $db=  new ps_DB;
+	  error_log("State -> " . $state);
+	  $q = "SELECT loc FROM zones WHERE region='$state'";
+	  error_log($q);
+	  $db->query($q);
+	  $db->next_record();
+	  $loc= $db->f("loc");
+	  return($loc);
+	}
+	
+	    
+	  
 	/**************************************************************************
 	** name: get_branchcode()
 	***************************************************************************/
@@ -981,8 +998,8 @@ Order Total: '.$order_total.'
 	}
 	
 	/**************************************************************************
-	** name: get_location()
-	***************************************************************************/
+	** name: get_location() old
+	***************************************************************************
 	function get_location($user_id) {
 		$db = new ps_DB;
 
@@ -1263,7 +1280,7 @@ Order Total: '.$order_total.'
 
 		$phone = get_phone($auth["user_id"]);
 
-		$location = get_location($auth["user_id"]);
+		//$location = get_location($auth["user_id"]);
 
 		$comments = $db->getEscaped( htmlspecialchars(strip_tags($d['customer_note'])));
 
@@ -1283,9 +1300,11 @@ Order Total: '.$order_total.'
 		$shipaddress4 = get_shipadd4($auth["user_id"]);
 		$shipaddress5 = get_shipadd5($auth["user_id"]);
 		$shipaddress6 = get_shipadd6($auth["user_id"]);
+		$state= get_billadd4($auth["user_id"]);
+		error_log("State->  " .$state);
+
+		$location = get_location($state);
 		
-
-
 
 		if ($braddress1 == '' || (!isset($braddress1)))
 		{$braddress1=$shipaddress1;}
