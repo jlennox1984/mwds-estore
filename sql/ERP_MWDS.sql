@@ -13540,3 +13540,13 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2013-09-08 21:44:34
+
+-- PATCH FOR ZONES
+CREATE TABLE `zones` (
+  `zoneid` int(11) NOT NULL AUTO_INCREMENT,
+  `loc` varchar(3) DEFAULT NULL,
+  `region` varchar(3) DEFAULT NULL,
+  PRIMARY KEY (`zoneid`),
+  KEY `loc_idx` (`loc`),
+  CONSTRAINT `loc` FOREIGN KEY (`loc`) REFERENCES `locations` (`loccode`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1 

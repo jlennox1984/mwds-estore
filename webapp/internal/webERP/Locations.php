@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
 				tel='" . $_POST['Tel'] . "',
 				fax='" . $_POST['Fax'] . "',
 				email='" . $_POST['Email'] . "',
-				contact='" . $_POST['Contact'] . "',
+			contact='" . $_POST['Contact'] . "',
 				taxprovinceid = " . $_POST['TaxProvince'] . ",
 				managed = " . $_POST['Managed'] . "
 			WHERE loccode = '$SelectedLocation'";
@@ -60,6 +60,31 @@ if (isset($_POST['submit'])) {
 		$DbgMsg = _('The SQL used to update the location record was');
 
 		$result = DB_query($sql,$db,$ErrMsg,$DbgMsg);
+		//RESET ZONES
+		error_log("Zone RESET");
+		$sql="DELETE FROM zones where loc='" . $SelectedLocation ."'";
+		error_log("SQL DELETE FOR ZONE RESET-> " . $sql);
+		$result = DB_query($sql,$db);
+
+		$zones = $_POST['Zones'];
+
+		if( $zones !=''){
+		  foreach($zones as $zone)
+		    {
+		      error_log("UPDATE MODE FOR->" . $zone);
+        $sql= " INSERT INTO zones(
+                        loc,
+                        region)
+                        VALUES(
+                          '" . $_POST['LocCode']. "',
+                         '$zone'
+)";
+        $result = DB_query($sql,$db,$ErrMsg,$DbgMsg);
+        print $sql;
+		    }
+                }
+
+		//END ZONE RESET
 
 		prnMsg( _('The location record has been updated'),'success');
 		unset($_POST['LocCode']);
@@ -122,22 +147,8 @@ if (isset($_POST['submit'])) {
 				" . $_POST['TaxProvince'] . ",
 				" . $_POST['Managed'] . "
 			)";
-	//Insert Sales Zones
-$zones=$_POST['Zones'];
-$zones_array= explode(',','$zones');
+		$ErrMsg =  _('An error occurred inserting the new location record because');
 
-for ($i=0;$i<count($zones_array);$i++)
-{
-
-	$sql1[$i] = " INSERT INTO sales_zones(
-			loc_code,
-			state_code)
-			VALUES(
-			  '" . $_POST['LocCode']. "',
-			 '$zones'
-)";		
-  $result = DB_query($sql1[$i],$db,$ErrMsg,$DbgMsg);
-}		$ErrMsg =  _('An error occurred inserting the new location record because');
 		$Dbgmsg =  _('The SQL used to insert the location record was');
 		$result = DB_query($sql,$db,$ErrMsg,$DbgMsg);
 
@@ -162,6 +173,23 @@ for ($i=0;$i<count($zones_array);$i++)
 		$result = DB_query($sql,$db,$ErrMsg, $DbgMsg);
 
 		echo '<BR>........ ' . _('and new stock locations inserted for all existing stock items for the new location');
+		$zones = $_POST['Zones'];
+		if( $zones !=''){
+		foreach($zones as $zone)
+		  {
+		    print $zone;
+        $sql= " INSERT INTO zones(
+                        loc,
+                        region)
+                        VALUES(
+                          '" . $_POST['LocCode']. "',
+                         '$zone'
+)";
+	$result = DB_query($sql,$db,$ErrMsg,$DbgMsg);
+	//	print $sql;
+		  }
+		}
+
 		unset($_POST['LocCode']);
 		unset($_POST['LocationName']);
 		unset($_POST['DelAdd1']);
@@ -299,8 +327,9 @@ for ($i=0;$i<count($zones_array);$i++)
 		}
 
 		$result= DB_query("DELETE FROM locstock WHERE loccode ='" . $SelectedLocation . "'",$db);
+		$result = DB_query("DELETE FROM zones where loc='" . $SelectedLocation ."'",$db);
 		$result = DB_query("DELETE FROM locations WHERE loccode='" . $SelectedLocation . "'",$db);
-
+		
 		prnMsg( _('Location') . ' ' . $SelectedLocation . ' ' . _('has been deleted') . '!', 'success');
 		unset ($SelectedLocation);
 	} //end if Delete Location
@@ -485,18 +514,28 @@ if (!isset($_GET['delete'])) {
 <TR>
       
 
-	<TD><?php echo _('Zones') . ':'; ?></TD><TD><SELECT NAME='Zones'multiple="multiple" >
+	<TD><?php echo _('Zones') . ':'; ?></TD><TD><SELECT NAME='Zones[]' id='Zones' multiple="multiple" >
 
         <?php
         $ZoneResult = DB_query('SELECT state_2_code  , state_name FROM jos_vm_state where country_id=38',$db); 
         while ($myrow2=DB_fetch_array($ZoneResult)){
-                if ($_POST['Zones ']==$myrow2['state_2_code']){
-                        echo '<OPTION SELECTED VALUE=' . $myrow2['state_2_code'] . '>' . $myrow2['state_name'];
+               
+		  $statecode=$myrow2['state_2_code'];
+		  
+		  
+		    $SQL ="SELECT count('test') FROM zones WHERE zones.region='$statecode' and zones.loc='$SelectedLocation'";
+		  $result=DB_query($SQL,$db);
+	       
+		   $myrow1=DB_fetch_array($result);
+		   $count=$myrow1[0]; 
+		   //error_log("status count is ---------> ".$count);
+		   if ($count >0){
+		  echo '<OPTION SELECTED VALUE=' . $myrow2['state_2_code'] . '>' . $myrow2['state_name'];
                 } else {
                         echo '<OPTION VALUE=' . $myrow2['state_2_code'] . '>' . $myrow2['state_name'];
-                }
-        }
-
+		  }
+		}
+        
         ?>
 </TD></TR>
 	<TR><TD><?php echo _('Enable Warehouse Management') . ':'; ?></TD>
